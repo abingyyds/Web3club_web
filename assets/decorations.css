@@ -1,0 +1,43 @@
+.background-decoration {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    pointer-events: none;
+    z-index: -1;
+}
+
+.grid-lines {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    background-image: 
+        linear-gradient(rgba(0, 255, 149, 0.03) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(0, 255, 149, 0.03) 1px, transparent 1px);
+    background-size: 30px 30px;
+    opacity: 0.15;
+}
+
+.cursor-glow {
+    position: fixed;
+    width: 300px;
+    height: 300px;
+    background: radial-gradient(circle, rgba(0, 255, 149, 0.05) 0%, transparent 70%);
+    pointer-events: none;
+    transform: translate(-50%, -50%);
+    z-index: 9999;
+}
+
+.card-glow-effect {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: radial-gradient(circle at var(--x) var(--y), 
+                rgba(0, 255, 149, 0.2) 0%, 
+                transparent 50%);
+    opacity: 0;
+    transition: opacity 0.3s;
+} 

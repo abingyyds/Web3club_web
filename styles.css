@@ -1,0 +1,1571 @@
+:root {
+    --neon-green: #00ff95;
+    --dark-bg: #000000;
+    --text-color: #ffffff;
+    --card-bg: rgba(0, 255, 149, 0.02);
+    --font-mono: 'Space Mono', monospace;
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    background-color: var(--dark-bg);
+    color: var(--text-color);
+    font-family: var(--font-mono);
+    line-height: 1.6;
+    min-height: 100vh;
+    position: relative;
+    overflow-x: hidden;
+}
+
+/* 动态背景效果 */
+body::before {
+    content: '';
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: 
+        radial-gradient(circle at 20% 20%, rgba(0, 255, 149, 0.03) 0%, transparent 50%),
+        radial-gradient(circle at 80% 80%, rgba(0, 255, 149, 0.03) 0%, transparent 50%),
+        radial-gradient(circle at 50% 50%, rgba(0, 255, 149, 0.01) 0%, transparent 70%),
+        linear-gradient(45deg, rgba(0, 0, 0, 0.95) 0%, rgba(0, 15, 8, 0.98) 100%);
+    pointer-events: none;
+    z-index: -2;
+}
+
+/* 高光效果 */
+.background-highlights {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: -1;
+    opacity: 0.4;
+    overflow: hidden;
+}
+
+/* 柔和光线 */
+.highlight {
+    position: absolute;
+    background: linear-gradient(
+        45deg,
+        transparent,
+        rgba(0, 255, 149, 0.03),
+        transparent
+    );
+    border-radius: 50%;
+    animation: highlightFloat 15s ease-in-out infinite;
+}
+
+.highlight:nth-child(1) {
+    width: 1000px;
+    height: 1000px;
+    top: -20%;
+    right: -20%;
+    transform-origin: center;
+    animation-delay: 0s;
+}
+
+.highlight:nth-child(2) {
+    width: 800px;
+    height: 800px;
+    bottom: -10%;
+    left: -10%;
+    transform-origin: bottom left;
+    animation-delay: -5s;
+}
+
+/* 动态网格背景 */
+.background-grid {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-image: 
+        linear-gradient(rgba(0, 255, 149, 0.03) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(0, 255, 149, 0.03) 1px, transparent 1px);
+    background-size: 50px 50px;
+    opacity: 0.2;
+    z-index: -1;
+    animation: gridMove 20s linear infinite;
+}
+
+/* 高光动画 */
+@keyframes highlightFloat {
+    0%, 100% {
+        transform: rotate(0deg) scale(1);
+        opacity: 0.3;
+    }
+    50% {
+        transform: rotate(180deg) scale(1.1);
+        opacity: 0.4;
+    }
+}
+
+/* 动态光束效果 */
+.background-beams {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: -1;
+    opacity: 0.3;
+}
+
+.beam {
+    position: absolute;
+    width: 2px;
+    height: 100%;
+    background: linear-gradient(
+        to bottom,
+        transparent,
+        rgba(0, 255, 149, 0.2),
+        transparent
+    );
+    animation: beamMove 8s linear infinite;
+}
+
+.beam:nth-child(1) { left: 10%; animation-delay: 0s; }
+.beam:nth-child(2) { left: 30%; animation-delay: -2s; }
+.beam:nth-child(3) { left: 50%; animation-delay: -4s; }
+.beam:nth-child(4) { left: 70%; animation-delay: -6s; }
+.beam:nth-child(5) { left: 90%; animation-delay: -8s; }
+
+/* 网格旋转动画 */
+@keyframes gridRotate {
+    0% {
+        transform: translate(-25%, -25%) rotate(0deg);
+    }
+    100% {
+        transform: translate(-25%, -25%) rotate(360deg);
+    }
+}
+
+/* 光束移动动画 */
+@keyframes beamMove {
+    0% {
+        transform: translateY(-100%) scaleY(0);
+        opacity: 0;
+    }
+    50% {
+        transform: translateY(0%) scaleY(1);
+        opacity: 1;
+    }
+    100% {
+        transform: translateY(100%) scaleY(0);
+        opacity: 0;
+    }
+}
+
+/* 背景光斑效果 */
+.background-glow {
+    position: fixed;
+    width: 100%;
+    height: 100%;
+    top: 0;
+    left: 0;
+    pointer-events: none;
+    z-index: -1;
+}
+
+.glow-point {
+    position: absolute;
+    width: 200px;
+    height: 200px;
+    background: radial-gradient(circle, rgba(0, 255, 149, 0.05) 0%, transparent 70%);
+    border-radius: 50%;
+    animation: glowFloat 10s infinite;
+}
+
+.glow-point:nth-child(1) {
+    top: 20%;
+    left: 10%;
+    animation-delay: 0s;
+}
+
+.glow-point:nth-child(2) {
+    top: 60%;
+    right: 20%;
+    animation-delay: -3s;
+}
+
+.glow-point:nth-child(3) {
+    bottom: 10%;
+    left: 30%;
+    animation-delay: -6s;
+}
+
+/* 网格移动动画 */
+@keyframes gridMove {
+    0% {
+        transform: translateY(0);
+    }
+    100% {
+        transform: translateY(50px);
+    }
+}
+
+/* 光斑浮动动画 */
+@keyframes glowFloat {
+    0%, 100% {
+        transform: translate(0, 0);
+    }
+    25% {
+        transform: translate(10px, 10px);
+    }
+    50% {
+        transform: translate(-10px, 20px);
+    }
+    75% {
+        transform: translate(-20px, -10px);
+    }
+}
+
+/* 导航栏 */
+header {
+    padding: 20px;
+    position: fixed;
+    width: 100%;
+    top: 0;
+    z-index: 1000;
+    background: rgba(0, 0, 0, 0.8);
+    backdrop-filter: blur(10px);
+    border-bottom: 1px solid rgba(0, 255, 149, 0.1);
+}
+
+nav {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    max-width: 1200px;
+    margin: 0 auto;
+    position: relative;
+    z-index: 1001;
+}
+
+/* 导航栏 Logo 效果 */
+.logo {
+    color: var(--neon-green);
+    font-size: 1.5rem;
+    font-weight: bold;
+    position: relative;
+    cursor: pointer;
+    padding: 5px 10px;
+    transition: all 0.3s ease;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+}
+
+/* 基础霓虹发光效果 */
+.logo {
+    text-shadow: 
+        0 0 5px var(--neon-green),
+        0 0 10px var(--neon-green),
+        0 0 20px var(--neon-green);
+    animation: logoGlow 2s ease-in-out infinite;
+}
+
+/* 悬停时的效果 */
+.logo:hover {
+    letter-spacing: 4px;
+    text-shadow: 
+        0 0 10px var(--neon-green),
+        0 0 20px var(--neon-green),
+        0 0 40px var(--neon-green),
+        0 0 80px var(--neon-green);
+    animation: logoGlitch 0.3s ease infinite;
+}
+
+/* Logo 边框效果 */
+.logo::before,
+.logo::after {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    border: 2px solid transparent;
+    transition: all 0.3s ease;
+}
+
+.logo:hover::before {
+    border-color: var(--neon-green);
+    transform: skew(10deg);
+    animation: borderGlow 1.5s ease-in-out infinite;
+}
+
+.logo:hover::after {
+    border-color: var(--neon-green);
+    transform: skew(-10deg);
+    animation: borderGlow 1.5s ease-in-out infinite reverse;
+}
+
+/* Logo 发光动画 */
+@keyframes logoGlow {
+    0%, 100% {
+        text-shadow: 
+            0 0 5px var(--neon-green),
+            0 0 10px var(--neon-green),
+            0 0 20px var(--neon-green);
+    }
+    50% {
+        text-shadow: 
+            0 0 10px var(--neon-green),
+            0 0 20px var(--neon-green),
+            0 0 40px var(--neon-green);
+    }
+}
+
+/* Logo 故障效果 */
+@keyframes logoGlitch {
+    0% {
+        transform: translate(0);
+    }
+    20% {
+        transform: translate(-2px, 2px);
+        color: #0ff;
+    }
+    40% {
+        transform: translate(-2px, -2px);
+        color: #f0f;
+    }
+    60% {
+        transform: translate(2px, 2px);
+        color: #ff0;
+    }
+    80% {
+        transform: translate(2px, -2px);
+        color: var(--neon-green);
+    }
+    100% {
+        transform: translate(0);
+    }
+}
+
+/* 边框发光动画 */
+@keyframes borderGlow {
+    0%, 100% {
+        box-shadow: 
+            0 0 5px var(--neon-green),
+            0 0 10px var(--neon-green);
+        opacity: 1;
+    }
+    50% {
+        box-shadow: 
+            0 0 20px var(--neon-green),
+            0 0 40px var(--neon-green);
+        opacity: 0.8;
+    }
+}
+
+/* 主要内容区域 */
+main {
+    margin-top: 80px;
+}
+
+/* Hero部分 */
+.hero {
+    position: relative;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 120px 20px;
+    overflow: hidden;
+}
+
+.hero-content {
+    width: 45%;
+    text-align: left;
+    z-index: 1;
+}
+
+/* 首页标题交互效果 */
+.hero-content h1 {
+    font-size: 2rem;
+    margin-bottom: 1rem;
+    opacity: 0;
+    animation: fadeInUp 0.8s ease forwards;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+    transition: all 0.3s ease;
+    cursor: default;
+}
+
+.hero-content h1:hover {
+    text-shadow: 0 0 15px rgba(255, 255, 255, 0.4);
+    transform: translateX(5px);
+    letter-spacing: 3px;
+}
+
+/* Web3Club 标题交互效果 */
+.hero-content h2 {
+    font-size: 4.5rem;
+    margin-bottom: 1.5rem;
+    color: var(--neon-green);
+    text-shadow: 
+        0 0 5px var(--neon-green),
+        0 0 20px var(--neon-green);
+    position: relative;
+    letter-spacing: -1px;
+    transition: all 0.3s ease;
+    cursor: default;
+}
+
+.hero-content h2:hover {
+    letter-spacing: 2px;
+    text-shadow: 
+        0 0 10px var(--neon-green),
+        0 0 30px var(--neon-green),
+        0 0 50px var(--neon-green);
+    transform: scale(1.05);
+}
+
+/* 描述文字效果 */
+.hero-content p {
+    font-size: 1.2rem;
+    width: 100%;
+    margin: 0 0 2rem;
+    opacity: 0;
+    white-space: pre-wrap;
+    overflow: hidden;
+    border-right: 2px solid var(--neon-green);
+    display: -webkit-box;
+    -webkit-line-clamp: 2;
+    -webkit-box-orient: vertical;
+    line-height: 1.5;
+    height: calc(1.2rem * 1.5 * 2);
+    min-height: calc(1.2rem * 1.5 * 2);
+    max-height: calc(1.2rem * 1.5 * 2);
+    position: relative;
+    padding-right: 4px;
+}
+
+/* 打字机光标效果 */
+.hero-content p::after {
+    content: '';
+    position: absolute;
+    right: 0;
+    top: 0;
+    height: 100%;
+    width: 2px;
+    background-color: var(--neon-green);
+    animation: blink 0.75s step-end infinite;
+}
+
+@keyframes blink {
+    from, to { background-color: transparent }
+    50% { background-color: var(--neon-green) }
+}
+
+/* 添加文字扫描线效果 */
+.hero-content h1::after,
+.hero-content h2::after,
+.hero-content p::after {
+    content: '';
+    position: absolute;
+    left: 0;
+    top: 0;
+    width: 0;
+    height: 100%;
+    background: linear-gradient(
+        90deg,
+        transparent,
+        rgba(0, 255, 149, 0.2),
+        transparent
+    );
+    transition: width 0.3s ease;
+}
+
+.hero-content h1:hover::after,
+.hero-content h2:hover::after,
+.hero-content p:hover::after {
+    width: 100%;
+    animation: scanLine 1s ease-in-out;
+}
+
+@keyframes scanLine {
+    0% {
+        left: -100%;
+    }
+    100% {
+        left: 200%;
+    }
+}
+
+/* 添加文字碎片效果 */
+.hero-content h2:hover {
+    animation: glitchEffect 0.3s ease-in-out infinite;
+}
+
+@keyframes glitchEffect {
+    0% {
+        transform: translate(0);
+    }
+    20% {
+        transform: translate(-2px, 2px);
+    }
+    40% {
+        transform: translate(-2px, -2px);
+    }
+    60% {
+        transform: translate(2px, 2px);
+    }
+    80% {
+        transform: translate(2px, -2px);
+    }
+    100% {
+        transform: translate(0);
+    }
+}
+
+/* 移除之前的扫描线效果 */
+.hero-content p::after {
+    display: none;
+}
+
+/* 添加更柔和的悬停效果 */
+.hero-content p::before {
+    content: '';
+    position: absolute;
+    left: -10px;
+    top: 0;
+    width: 3px;
+    height: 100%;
+    background: var(--neon-green);
+    opacity: 0;
+    transition: all 0.3s ease;
+}
+
+.hero-content p:hover::before {
+    opacity: 0.5;
+    transform: translateX(5px);
+}
+
+/* 霓虹脉冲效果 */
+@keyframes neonPulse {
+    0%, 100% {
+        text-shadow: 
+            0 0 5px var(--neon-green),
+            0 0 20px var(--neon-green),
+            0 0 40px var(--neon-green);
+    }
+    50% {
+        text-shadow: 
+            0 0 10px var(--neon-green),
+            0 0 30px var(--neon-green),
+            0 0 60px var(--neon-green);
+    }
+}
+
+/* 渐入上升效果 */
+@keyframes fadeInUp {
+    from {
+        opacity: 0;
+        transform: translateY(20px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+/* 增强光点效果 */
+.light-point {
+    position: absolute;
+    width: 4px;
+    height: 4px;
+    background: var(--neon-green);
+    border-radius: 50%;
+    box-shadow: 
+        0 0 15px var(--neon-green),
+        0 0 30px var(--neon-green);
+    opacity: 1;
+}
+
+/* 光线效果 */
+.light-trail {
+    position: absolute;
+    height: 3px;
+    background: linear-gradient(
+        90deg,
+        var(--neon-green) 0%,
+        transparent 100%
+    );
+    opacity: 0.6;
+    box-shadow: 0 0 15px var(--neon-green);
+}
+
+/* 按钮容器样式 */
+.button-wrapper {
+    position: relative;
+    display: inline-block;
+    padding: 2px;
+}
+
+/* 按钮基础样式 */
+.get-started-btn {
+    background: transparent;
+    color: var(--neon-green);
+    border: none;
+    padding: 12px 24px;
+    font-size: 1rem;
+    font-family: var(--font-mono);
+    cursor: pointer;
+    position: relative;
+    transition: all 0.3s ease;
+}
+
+/* 按钮边框效果 */
+.button-wrapper::before,
+.button-wrapper::after {
+    content: '';
+    position: absolute;
+    width: 12px;
+    height: 12px;
+    border: 2px solid var(--neon-green);
+    transition: all 0.3s ease;
+}
+
+.button-wrapper::before {
+    top: 0;
+    left: 0;
+    border-right: 0;
+    border-bottom: 0;
+}
+
+.button-wrapper::after {
+    bottom: 0;
+    right: 0;
+    border-left: 0;
+    border-top: 0;
+}
+
+/* 悬停效果 */
+.button-wrapper:hover::before,
+.button-wrapper:hover::after {
+    width: 100%;
+    height: 100%;
+}
+
+.button-wrapper:hover {
+    animation: buttonGlow 2s ease-in-out infinite;
+}
+
+.get-started-btn:hover {
+    letter-spacing: 2px;
+    text-shadow: 0 0 8px var(--neon-green);
+}
+
+/* 点击效果 */
+.button-wrapper:active .get-started-btn {
+    transform: scale(0.95);
+}
+
+/* 添加发光动画 */
+@keyframes buttonGlow {
+    0%, 100% {
+        box-shadow: 0 0 5px rgba(0, 255, 149, 0.3);
+    }
+    50% {
+        box-shadow: 0 0 20px rgba(0, 255, 149, 0.6);
+    }
+}
+
+/* 特性介绍区域 */
+.features {
+    max-width: 1200px;
+    margin: 80px auto;
+    padding: 0 20px;
+    text-align: center;
+}
+
+.features h2 {
+    font-size: 2.5rem;
+    margin-bottom: 1.2rem;
+    color: var(--neon-green);
+    text-shadow: 0 0 10px rgba(0, 255, 149, 0.3);
+    position: relative;
+    transition: all 0.3s ease;
+    cursor: default;
+}
+
+.features h2:hover {
+    color: var(--neon-green);
+    text-shadow: 0 0 15px rgba(0, 255, 149, 0.4);
+    transform: translateX(5px);
+}
+
+.features-intro {
+    font-size: 1.2rem;
+    max-width: 800px;
+    margin: 0 auto 3rem;
+    line-height: 1.6;
+    opacity: 0.9;
+    position: relative;
+    transition: all 0.3s ease;
+    cursor: default;
+}
+
+.features-intro:hover {
+    color: #fff;
+    text-shadow: 0 0 8px rgba(0, 255, 149, 0.3);
+    transform: translateX(3px);
+}
+
+/* DAPP展示区域 */
+.feature-cards-container {
+    width: 100%;
+    height: 400px;
+    overflow: hidden;
+    position: relative;
+    padding: 20px 0;
+    background: rgba(0, 0, 0, 0.3);
+    border: 1px solid rgba(0, 255, 149, 0.1);
+    border-radius: 12px;
+}
+
+.feature-cards {
+    display: flex;
+    gap: 30px;
+    animation: scrollFeatureCards 30s linear infinite;
+    padding: 0 40px;
+}
+
+.feature-card {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    min-width: 240px;
+    height: 340px;
+    background: rgba(0, 255, 149, 0.02);
+    border: 1px solid rgba(0, 255, 149, 0.1);
+    padding: 2rem;
+    border-radius: 8px;
+    transition: all 0.3s ease;
+}
+
+.feature-card img {
+    width: 50px;
+    height: 50px;
+    margin-bottom: 1.5rem;
+    filter: drop-shadow(0 0 8px rgba(0, 255, 149, 0.3));
+}
+
+.feature-card h3 {
+    font-size: 1.3rem;
+    color: var(--neon-green);
+    margin-bottom: 0.8rem;
+    text-shadow: 0 0 8px rgba(0, 255, 149, 0.3);
+    text-align: center;
+}
+
+.feature-card p {
+    font-size: 1rem;
+    opacity: 0.8;
+    line-height: 1.5;
+    text-align: center;
+}
+
+/* 卡片悬停效果 */
+.feature-card:hover {
+    transform: translateY(-10px);
+    background: rgba(0, 255, 149, 0.05);
+    box-shadow: 0 0 20px rgba(0, 255, 149, 0.2);
+}
+
+/* DAPP展示区域的轮播动画 */
+@keyframes scrollFeatureCards {
+    0% {
+        transform: translateX(0);
+    }
+    100% {
+        transform: translateX(calc(-270px * 8)); /* 只移动第一组卡片的距离 */
+    }
+}
+
+/* 修改渐变遮罩为左右方向 */
+.feature-cards-container::before,
+.feature-cards-container::after {
+    content: '';
+    position: absolute;
+    top: 0;
+    width: 100px;
+    height: 100%;
+    z-index: 2;
+    pointer-events: none;
+}
+
+.feature-cards-container::before {
+    left: 0;
+    background: linear-gradient(to right, var(--dark-bg), transparent);
+}
+
+.feature-cards-container::after {
+    right: 0;
+    background: linear-gradient(to left, var(--dark-bg), transparent);
+}
+
+/* 添加悬停暂停效果 */
+.feature-cards-container:hover .feature-cards {
+    animation-play-state: paused;
+}
+
+/* 开发者支持区域 */
+.developer-support {
+    text-align: center;
+    padding: 120px 20px;
+    position: relative;
+    overflow: hidden;
+    margin: 80px 0;
+}
+
+/* 雷达背景效果（光晕） */
+.developer-support::before {
+    content: '';
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 800px;
+    height: 800px;
+    background: 
+        radial-gradient(
+            circle at center,
+            rgba(0, 255, 149, 0.1) 0%,
+            rgba(0, 255, 149, 0.05) 30%,
+            rgba(0, 255, 149, 0.01) 60%,
+            transparent 70%
+        ),
+        conic-gradient(
+            from 0deg at center,
+            transparent 0deg,
+            rgba(0, 255, 149, 0.1) 60deg,
+            transparent 120deg,
+            transparent 360deg
+        );
+    transform: translate(-50%, -50%);
+    z-index: -1;
+    border-radius: 50%;
+    animation: radarScan 4s linear infinite;
+}
+
+/* 雷达波纹效果 */
+.developer-support::after {
+    content: '';
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 800px;
+    height: 800px;
+    border: 1px solid rgba(0, 255, 149, 0.1);
+    border-radius: 50%;
+    transform: translate(-50%, -50%);
+    z-index: -1;
+    animation: radarWave 3s ease-out infinite;
+}
+
+/* 添加多层波纹 */
+.radar-waves {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 600px;
+    height: 600px;
+    transform: translate(-50%, -50%);
+    z-index: -1;
+}
+
+.radar-wave {
+    position: absolute;
+    border: 1px solid rgba(0, 255, 149, 0.1);
+    border-radius: 50%;
+    width: 100%;
+    height: 100%;
+    animation: radarWave 3s ease-out infinite;
+}
+
+.radar-wave:nth-child(2) {
+    animation-delay: 1s;
+}
+
+.radar-wave:nth-child(3) {
+    animation-delay: 2s;
+}
+
+/* 雷达扫描动画 */
+@keyframes radarScan {
+    from {
+        transform: translate(-50%, -50%) rotate(0deg);
+    }
+    to {
+        transform: translate(-50%, -50%) rotate(360deg);
+    }
+}
+
+/* 雷达波纹动画 */
+@keyframes radarWave {
+    0% {
+        transform: scale(0.1);
+        opacity: 1;
+    }
+    100% {
+        transform: scale(2);
+        opacity: 0;
+    }
+}
+
+/* 保留其他样式 */
+.developer-support h2 {
+    font-size: 2.8rem;
+    margin-bottom: 1.5rem;
+    color: var(--neon-green);
+    text-shadow: 0 0 15px rgba(0, 255, 149, 0.4);
+    letter-spacing: -1px;
+    animation: glowText 2s ease-in-out infinite;
+    position: relative;
+    transition: all 0.3s ease;
+    cursor: default;
+}
+
+.developer-support h2:hover {
+    color: var(--neon-green);
+    text-shadow: 0 0 15px rgba(0, 255, 149, 0.4);
+    transform: translateX(5px);
+}
+
+.developer-support p {
+    font-size: 1.2rem;
+    max-width: 700px;
+    margin: 0 auto 40px;
+    opacity: 0.9;
+    line-height: 1.6;
+    position: relative;
+    z-index: 1;
+    transition: all 0.3s ease;
+    cursor: default;
+}
+
+.developer-support p:hover {
+    color: #fff;
+    text-shadow: 0 0 8px rgba(0, 255, 149, 0.3);
+    transform: translateX(3px);
+}
+
+/* 文档按钮样式 */
+.doc-btn {
+    background: transparent;
+    color: var(--neon-green);
+    border: none;
+    padding: 12px 24px;
+    font-size: 1rem;
+    font-family: var(--font-mono);
+    cursor: pointer;
+    position: relative;
+    transition: all 0.3s ease;
+}
+
+.doc-btn:hover {
+    letter-spacing: 2px;
+    text-shadow: 0 0 8px var(--neon-green);
+}
+
+/* 社区展示区域 */
+.community {
+    max-width: 1200px;
+    margin: 120px auto;
+    padding: 0 20px;
+}
+
+.community-content {
+    text-align: center;
+}
+
+.community-content h2 {
+    font-size: 2.5rem;
+    margin-bottom: 1.2rem;
+    color: var(--neon-green);
+    text-shadow: 0 0 10px rgba(0, 255, 149, 0.3);
+    position: relative;
+    transition: all 0.3s ease;
+    cursor: default;
+}
+
+.community-content h2:hover {
+    color: var(--neon-green);
+    text-shadow: 0 0 15px rgba(0, 255, 149, 0.4);
+    transform: translateX(5px);
+}
+
+.community-content > p {
+    font-size: 1.2rem;
+    max-width: 700px;
+    margin: 0 auto 3rem;
+    opacity: 0.9;
+    position: relative;
+    transition: all 0.3s ease;
+    cursor: default;
+}
+
+.community-content p:hover {
+    color: #fff;
+    text-shadow: 0 0 8px rgba(0, 255, 149, 0.3);
+    transform: translateX(3px);
+}
+
+.community-showcase {
+    width: 100%;
+    height: 400px;
+    overflow: hidden;
+    position: relative;
+    background: rgba(0, 0, 0, 0.3);
+    border: 1px solid rgba(0, 255, 149, 0.1);
+    border-radius: 12px;
+    padding: 15px 0;
+}
+
+.community-list {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+    animation: scrollCommunities 20s linear infinite;
+    padding: 0 30px;
+}
+
+.community-item {
+    display: flex;
+    align-items: center;
+    gap: 20px;
+    padding: 15px;
+    background: rgba(0, 255, 149, 0.05);
+    border-radius: 8px;
+    transition: all 0.3s ease;
+}
+
+.community-item:hover {
+    transform: translateX(20px);
+    background: rgba(0, 255, 149, 0.1);
+    box-shadow: 0 0 20px rgba(0, 255, 149, 0.2);
+}
+
+.community-logo {
+    width: 60px;
+    height: 60px;
+    border-radius: 50%;
+    overflow: hidden;
+    border: 2px solid var(--neon-green);
+}
+
+.community-logo img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+.community-info {
+    text-align: left;
+    flex: 1;
+}
+
+.community-info h3 {
+    font-size: 1.1rem;
+    color: var(--neon-green);
+    margin-bottom: 0.4rem;
+}
+
+.community-info p {
+    font-size: 0.9rem;
+    opacity: 0.8;
+    line-height: 1.4;
+}
+
+/* 社区展示区域的轮播动画 */
+@keyframes scrollCommunities {
+    0% {
+        transform: translateY(0);
+    }
+    100% {
+        transform: translateY(calc(-100% / 2)); /* 只移动第一组的距离 */
+    }
+}
+
+/* 添加悬停暂停效果 */
+.feature-cards-container:hover .feature-cards,
+.community-showcase:hover .community-list {
+    animation-play-state: paused;
+}
+
+/* CTA区域 */
+.cta {
+    text-align: center;
+    padding: 80px 20px;
+    background: rgba(0, 0, 0, 0.4);
+    margin: 60px auto;
+    max-width: 1200px;
+    position: relative;
+    overflow: hidden;
+    border: 1px solid rgba(0, 255, 149, 0.1);
+    border-radius: 20px;
+}
+
+/* 添加背景动态效果 */
+.cta::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: 
+        radial-gradient(circle at 30% 30%, rgba(0, 255, 149, 0.05) 0%, transparent 50%),
+        radial-gradient(circle at 70% 70%, rgba(0, 255, 149, 0.05) 0%, transparent 50%);
+    z-index: -1;
+    animation: glowPulse 4s ease-in-out infinite;
+}
+
+/* CTA区域文字样式 */
+.cta h2 {
+    font-size: 2.3rem;
+    max-width: 800px;
+    margin: 0 auto 2rem;
+    line-height: 1.4;
+    color: var(--neon-green);
+    text-shadow: 0 0 10px rgba(0, 255, 149, 0.3);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 0.8rem;
+}
+
+.cta h2 span {
+    display: block;
+    white-space: nowrap;
+    opacity: 0.9;
+    transition: all 0.3s ease;
+}
+
+.cta h2 span:hover {
+    transform: translateY(-2px);
+    text-shadow: 0 0 20px rgba(0, 255, 149, 0.5);
+    opacity: 1;
+}
+
+/* 改进按钮样式 */
+.cta .get-started-btn {
+    font-size: 1rem;
+    padding: 12px 36px;
+    background: linear-gradient(45deg, rgba(0, 255, 149, 0.1), rgba(0, 255, 149, 0.2));
+    border: 1px solid rgba(0, 255, 149, 0.3);
+    border-radius: 8px;
+    transition: all 0.3s ease;
+    position: relative;
+    overflow: hidden;
+}
+
+.cta .get-started-btn::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(
+        90deg,
+        transparent,
+        rgba(0, 255, 149, 0.2),
+        transparent
+    );
+    transition: 0.5s;
+}
+
+.cta .get-started-btn:hover {
+    transform: translateY(-2px);
+    box-shadow: 
+        0 0 20px rgba(0, 255, 149, 0.2),
+        0 0 40px rgba(0, 255, 149, 0.1);
+}
+
+.cta .get-started-btn:hover::before {
+    left: 100%;
+}
+
+/* 添加背景动画 */
+@keyframes glowPulse {
+    0%, 100% {
+        opacity: 0.5;
+        transform: scale(1);
+    }
+    50% {
+        opacity: 0.7;
+        transform: scale(1.05);
+    }
+}
+
+/* 页脚 */
+footer {
+    text-align: center;
+    padding: 20px;
+    margin-top: 60px;
+}
+
+/* 响应式设计 */
+@media (max-width: 768px) {
+    .hero {
+        position: relative;
+        min-height: 100vh;
+    }
+
+    .hero-content {
+        width: 100%;
+        padding: 20px;
+        background: rgba(0, 0, 0, 0.7);
+        backdrop-filter: blur(5px);
+        z-index: 2;
+    }
+
+    .tetris-container {
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        z-index: 1;
+        opacity: 0.5;
+    }
+
+    /* 添加切换按钮样式 */
+    .mobile-nav {
+        position: fixed;
+        bottom: 20px;
+        left: 50%;
+        transform: translateX(-50%);
+        z-index: 100;
+        display: flex;
+        gap: 10px;
+    }
+}
+
+/* 更小屏幕的适配 */
+@media (max-width: 480px) {
+    .hero-content h2 {
+        font-size: 2.5rem;
+    }
+    
+    .hero-content p {
+        font-size: 1rem;
+        height: calc(1rem * 1.5 * 2);
+    }
+}
+
+/* 雷达光点容器 */
+.radar-dots {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 800px;
+    height: 800px;
+    transform: translate(-50%, -50%);
+    z-index: -1;
+}
+
+/* 雷达光点样式 */
+.radar-dot {
+    position: absolute;
+    width: 4px;
+    height: 4px;
+    background: var(--neon-green);
+    border-radius: 50%;
+    opacity: 0;
+    transition: opacity 0.5s ease;
+    animation: dotAppear 0.5s ease forwards;
+}
+
+/* 光点出现动画 */
+@keyframes dotAppear {
+    from {
+        opacity: 0;
+        transform: scale(0);
+    }
+    to {
+        opacity: 0.2;
+        transform: scale(1);
+    }
+}
+
+/* 光点闪烁动画 */
+@keyframes dotGlow {
+    0% {
+        opacity: 0.2;
+        transform: scale(1);
+        box-shadow: 0 0 2px var(--neon-green);
+    }
+    50% {
+        opacity: 1;
+        transform: scale(1.5);
+        box-shadow: 0 0 10px var(--neon-green),
+                   0 0 20px var(--neon-green);
+    }
+    100% {
+        opacity: 0.2;
+        transform: scale(1);
+        box-shadow: 0 0 2px var(--neon-green);
+    }
+}
+
+/* 开发者支持区域的雷达扫描效果 */
+.developer-support .radar-scan-area {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 800px;
+    height: 800px;
+    transform: translate(-50%, -50%);
+    z-index: -1;
+}
+
+.developer-support .radar-beam {
+    position: absolute;
+    width: 50%;
+    height: 2px;
+    background: linear-gradient(90deg, 
+        rgba(0, 255, 149, 0.05),  /* 减弱起始亮度 */
+        rgba(0, 255, 149, 0.15)   /* 减弱结束亮度 */
+    );
+    transform-origin: right center;
+    right: 50%;
+    top: 50%;
+    animation: radarSweep 4s linear infinite;
+    transform: rotate(-30deg);  /* 逆时针旋转30度作为起始位置 */
+}
+
+/* 雷达光点样式 */
+.developer-support .radar-dot {
+    position: absolute;
+    width: 4px;
+    height: 4px;
+    background: var(--neon-green);
+    border-radius: 50%;
+    opacity: 0;
+    box-shadow: 0 0 8px var(--neon-green);
+}
+
+@keyframes radarSweep {
+    from {
+        transform: rotate(-210deg);  /* 从-30度开始 */
+    }
+    to {
+        transform: rotate(160deg);  /* 旋转360度到330度 */
+    }
+}
+
+@keyframes dotBlink {
+    0%, 100% {
+        opacity: 0;
+        transform: scale(0.8);
+    }
+    50% {
+        opacity: 1;
+        transform: scale(1.2);
+    }
+}
+
+/* CTA区域的粒子容器 */
+.cta-particles {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: 0;
+    overflow: hidden;
+}
+
+/* 调整CTA内容层级 */
+.cta h2, 
+.cta .button-wrapper {
+    position: relative;
+    z-index: 1;
+}
+
+/* 页脚社交媒体图标样式 */
+.social-links {
+    display: flex;
+    justify-content: center;
+    gap: 20px;
+    margin: 20px 0;
+}
+
+.social-links a {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 40px;
+    height: 40px;
+    border: 1px solid rgba(0, 255, 149, 0.3);
+    border-radius: 50%;
+    transition: all 0.3s ease;
+    position: relative;
+    overflow: hidden;
+}
+
+.social-links a:hover {
+    border-color: var(--neon-green);
+    transform: translateY(-2px);
+    box-shadow: 0 0 15px rgba(0, 255, 149, 0.3);
+}
+
+.social-links a::before {
+    content: '';
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    background: radial-gradient(circle at center, 
+        rgba(0, 255, 149, 0.1) 0%,
+        transparent 70%);
+    opacity: 0;
+    transition: opacity 0.3s ease;
+}
+
+.social-links a:hover::before {
+    opacity: 1;
+}
+
+.social-links svg {
+    width: 20px;
+    height: 20px;
+    fill: var(--neon-green);
+    transition: all 0.3s ease;
+}
+
+.social-links a:hover svg {
+    transform: scale(1.1);
+    filter: drop-shadow(0 0 5px rgba(0, 255, 149, 0.5));
+}
+
+/* 俄罗斯方块容器 */
+.tetris-container {
+    position: relative;
+    width: 45%;
+    height: 500px;
+    right: 0;
+    overflow: hidden;
+    border-left: 1px solid rgba(0, 255, 149, 0.1);
+}
+
+.tetris-block {
+    position: absolute;
+    width: 30px;
+    height: 30px;
+    background: rgba(0, 255, 149, 0.1);
+    border: 1px solid rgba(0, 255, 149, 0.3);
+    box-shadow: 0 0 10px rgba(0, 255, 149, 0.2);
+    transition: all 0.3s ease;
+}
+
+.tetris-block.placed {
+    animation: blockGlow 2s infinite;
+}
+
+/* 增加堆叠效果的阴影 */
+.tetris-block.placed::after {
+    content: '';
+    position: absolute;
+    top: -1px;
+    left: -1px;
+    right: -1px;
+    bottom: -1px;
+    background: rgba(0, 255, 149, 0.05);
+    z-index: -1;
+    filter: blur(4px);
+}
+
+@keyframes blockGlow {
+    0%, 100% {
+        box-shadow: 0 0 10px rgba(0, 255, 149, 0.2);
+    }
+    50% {
+        box-shadow: 0 0 20px rgba(0, 255, 149, 0.4);
+    }
+}
+
+@keyframes blockFall {
+    from {
+        transform: translateY(-100vh);
+    }
+    to {
+        transform: translateY(var(--final-y));
+    }
+}
+
+/* 标题和描述文字的交互效果 */
+.features h2,
+.developer-support h2,
+.community h2 {
+    position: relative;
+    transition: all 0.3s ease;
+    cursor: default;
+}
+
+.features h2:hover,
+.developer-support h2:hover,
+.community h2:hover {
+    color: var(--neon-green);
+    text-shadow: 0 0 15px rgba(0, 255, 149, 0.4);
+    transform: translateX(5px);
+}
+
+.features-intro,
+.developer-support p,
+.community p {
+    position: relative;
+    transition: all 0.3s ease;
+    cursor: default;
+}
+
+.features-intro:hover,
+.developer-support p:hover,
+.community p:hover {
+    color: #fff;
+    text-shadow: 0 0 8px rgba(0, 255, 149, 0.3);
+    transform: translateX(3px);
+}
+
+/* 添加悬停时的光效 */
+.features h2::before,
+.developer-support h2::before,
+.community h2::before,
+.features-intro::before,
+.developer-support p::before,
+.community p::before {
+    content: '';
+    position: absolute;
+    left: -10px;
+    top: 0;
+    width: 3px;
+    height: 100%;
+    background: var(--neon-green);
+    opacity: 0;
+    transform: scaleY(0);
+    transition: all 0.3s ease;
+}
+
+.features h2:hover::before,
+.developer-support h2:hover::before,
+.community h2:hover::before,
+.features-intro:hover::before,
+.developer-support p:hover::before,
+.community p:hover::before {
+    opacity: 0.5;
+    transform: scaleY(1);
+}

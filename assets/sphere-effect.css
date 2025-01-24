@@ -1,0 +1,127 @@
+.hero-sphere {
+    position: relative;
+    width: 500px;
+    height: 500px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    perspective: 2000px;
+}
+
+.sphere-container {
+    width: 400px;
+    height: 400px;
+    position: relative;
+    perspective: 1000px;
+    transform-style: preserve-3d;
+    animation: autoRotate 30s linear infinite;
+}
+
+.sphere {
+    width: 100%;
+    height: 100%;
+    position: relative;
+    transform-style: preserve-3d;
+}
+
+/* 优化基础球体 */
+.sphere-base {
+    width: 100%;
+    height: 100%;
+    position: absolute;
+    border-radius: 50%;
+    background: radial-gradient(circle at center, 
+        rgba(0, 255, 149, 0.15),
+        rgba(0, 255, 149, 0.05) 40%,
+        transparent 70%);
+    box-shadow: 0 0 50px rgba(0, 255, 149, 0.1);
+}
+
+/* 优化3D光晕效果 */
+.sphere-glow {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    transform-style: preserve-3d;
+}
+
+.glow-layer {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    border-radius: 50%;
+    background: radial-gradient(circle at 50% 50%,
+        rgba(0, 255, 149, 0.1) 0%,
+        rgba(0, 255, 149, 0.05) 30%,
+        transparent 70%);
+    transform-style: preserve-3d;
+}
+
+/* 多层光晕，创造3D深度 */
+.glow-layer-1 { transform: translateZ(-80px) scale(1.2); opacity: 0.15; }
+.glow-layer-2 { transform: translateZ(-40px) scale(1.1); opacity: 0.12; }
+.glow-layer-3 { transform: translateZ(0) scale(1); opacity: 0.1; }
+.glow-layer-4 { transform: translateZ(40px) scale(0.9); opacity: 0.08; }
+.glow-layer-5 { transform: translateZ(80px) scale(0.8); opacity: 0.05; }
+
+/* 优化光点样式 */
+.light-point {
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    width: 2px;
+    height: 2px;
+    background: var(--neon-green);
+    border-radius: 50%;
+    transform-style: preserve-3d;
+    pointer-events: none;
+    box-shadow: 0 0 4px var(--neon-green);
+}
+
+/* 优化光线轨迹 */
+.light-trail {
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    height: 1px;
+    width: 40px;
+    background: linear-gradient(90deg, 
+        rgba(0, 255, 149, 0.8),
+        transparent);
+    transform-origin: left center;
+    pointer-events: none;
+    opacity: 0.5;
+}
+
+/* 修改JavaScript中的createSphere函数中的光点生成逻辑 */
+@keyframes autoRotate {
+    from {
+        transform: rotateX(20deg) rotateY(0);
+    }
+    to {
+        transform: rotateX(20deg) rotateY(360deg);
+    }
+}
+
+@keyframes flicker {
+    0%, 100% {
+        opacity: 0.3;
+        transform: scale(1);
+    }
+    50% {
+        opacity: 0.8;
+        transform: scale(1.2);
+    }
+}
+
+/* 添加径向扩散动画 */
+@keyframes radialExpand {
+    0% {
+        transform: scale(0.8);
+        opacity: 0.8;
+    }
+    100% {
+        transform: scale(1.2);
+        opacity: 0;
+    }
+} 
