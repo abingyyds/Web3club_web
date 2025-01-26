@@ -4,6 +4,9 @@
     --text-color: #ffffff;
     --card-bg: rgba(0, 255, 149, 0.02);
     --font-mono: 'Space Mono', monospace;
+    --primary-color: #3498db;
+    --secondary-color: #2ecc71;
+    --background-color: #fff;
 }
 
 * {
@@ -13,7 +16,7 @@
 }
 
 body {
-    background-color: var(--dark-bg);
+    background-color: var(--background-color);
     color: var(--text-color);
     font-family: var(--font-mono);
     line-height: 1.6;
@@ -22,7 +25,7 @@ body {
     overflow-x: hidden;
 }
 
-/* 动态背景效果 */
+/* Dynamic background effect */
 body::before {
     content: '';
     position: fixed;
@@ -39,7 +42,7 @@ body::before {
     z-index: -2;
 }
 
-/* 高光效果 */
+/* Highlight effect */
 .background-highlights {
     position: fixed;
     top: 0;
@@ -51,7 +54,7 @@ body::before {
     overflow: hidden;
 }
 
-/* 柔和光线 */
+/* Soft light effect */
 .highlight {
     position: absolute;
     background: linear-gradient(
@@ -82,7 +85,7 @@ body::before {
     animation-delay: -5s;
 }
 
-/* 动态网格背景 */
+/* Dynamic grid background */
 .background-grid {
     position: fixed;
     top: 0;
@@ -98,7 +101,7 @@ body::before {
     animation: gridMove 20s linear infinite;
 }
 
-/* 高光动画 */
+/* Highlight animation */
 @keyframes highlightFloat {
     0%, 100% {
         transform: rotate(0deg) scale(1);
@@ -110,7 +113,7 @@ body::before {
     }
 }
 
-/* 动态光束效果 */
+/* Dynamic beam effect */
 .background-beams {
     position: fixed;
     top: 0;
@@ -140,17 +143,7 @@ body::before {
 .beam:nth-child(4) { left: 70%; animation-delay: -6s; }
 .beam:nth-child(5) { left: 90%; animation-delay: -8s; }
 
-/* 网格旋转动画 */
-@keyframes gridRotate {
-    0% {
-        transform: translate(-25%, -25%) rotate(0deg);
-    }
-    100% {
-        transform: translate(-25%, -25%) rotate(360deg);
-    }
-}
-
-/* 光束移动动画 */
+/* Beam movement animation */
 @keyframes beamMove {
     0% {
         transform: translateY(-100%) scaleY(0);
@@ -166,7 +159,7 @@ body::before {
     }
 }
 
-/* 背景光斑效果 */
+/* Background glow effect */
 .background-glow {
     position: fixed;
     width: 100%;
@@ -204,7 +197,7 @@ body::before {
     animation-delay: -6s;
 }
 
-/* 网格移动动画 */
+/* Grid rotation animation */
 @keyframes gridMove {
     0% {
         transform: translateY(0);
@@ -214,7 +207,7 @@ body::before {
     }
 }
 
-/* 光斑浮动动画 */
+/* Glow float animation */
 @keyframes glowFloat {
     0%, 100% {
         transform: translate(0, 0);
@@ -230,13 +223,13 @@ body::before {
     }
 }
 
-/* 导航栏 */
+/* Navigation bar */
 header {
     padding: 20px;
     position: fixed;
     width: 100%;
     top: 0;
-    z-index: 1000;
+    z-index: 3;
     background: rgba(0, 0, 0, 0.8);
     backdrop-filter: blur(10px);
     border-bottom: 1px solid rgba(0, 255, 149, 0.1);
@@ -252,7 +245,7 @@ nav {
     z-index: 1001;
 }
 
-/* 导航栏 Logo 效果 */
+/* Basic neon glow effect */
 .logo {
     color: var(--neon-green);
     font-size: 1.5rem;
@@ -265,7 +258,7 @@ nav {
     letter-spacing: 2px;
 }
 
-/* 基础霓虹发光效果 */
+/* Hover effect */
 .logo {
     text-shadow: 
         0 0 5px var(--neon-green),
@@ -274,7 +267,7 @@ nav {
     animation: logoGlow 2s ease-in-out infinite;
 }
 
-/* 悬停时的效果 */
+/* Hover effect */
 .logo:hover {
     letter-spacing: 4px;
     text-shadow: 
@@ -285,7 +278,7 @@ nav {
     animation: logoGlitch 0.3s ease infinite;
 }
 
-/* Logo 边框效果 */
+/* Logo border effect */
 .logo::before,
 .logo::after {
     content: '';
@@ -310,7 +303,7 @@ nav {
     animation: borderGlow 1.5s ease-in-out infinite reverse;
 }
 
-/* Logo 发光动画 */
+/* Logo glow animation */
 @keyframes logoGlow {
     0%, 100% {
         text-shadow: 
@@ -326,7 +319,7 @@ nav {
     }
 }
 
-/* Logo 故障效果 */
+/* Logo glitch effect */
 @keyframes logoGlitch {
     0% {
         transform: translate(0);
@@ -352,7 +345,7 @@ nav {
     }
 }
 
-/* 边框发光动画 */
+/* Border glow animation */
 @keyframes borderGlow {
     0%, 100% {
         box-shadow: 
@@ -368,12 +361,15 @@ nav {
     }
 }
 
-/* 主要内容区域 */
+/* Main content area */
 main {
+    position: relative;
+    z-index: 2;
     margin-top: 80px;
+    margin-bottom: 80px;
 }
 
-/* Hero部分 */
+/* Hero section */
 .hero {
     position: relative;
     display: flex;
@@ -392,7 +388,7 @@ main {
     z-index: 1;
 }
 
-/* 首页标题交互效果 */
+/* Homepage title interaction effect */
 .hero-content h1 {
     font-size: 2rem;
     margin-bottom: 1rem;
@@ -410,7 +406,7 @@ main {
     letter-spacing: 3px;
 }
 
-/* Web3Club 标题交互效果 */
+/* Web3Club title interaction effect */
 .hero-content h2 {
     font-size: 4.5rem;
     margin-bottom: 1.5rem;
@@ -433,44 +429,62 @@ main {
     transform: scale(1.05);
 }
 
-/* 描述文字效果 */
+/* Description text effect */
 .hero-content p {
     font-size: 1.2rem;
-    width: 100%;
+    width: 450px;
     margin: 0 0 2rem;
     opacity: 0;
-    white-space: pre-wrap;
+    white-space: normal;
     overflow: hidden;
-    border-right: 2px solid var(--neon-green);
-    display: -webkit-box;
-    -webkit-line-clamp: 2;
-    -webkit-box-orient: vertical;
-    line-height: 1.5;
-    height: calc(1.2rem * 1.5 * 2);
-    min-height: calc(1.2rem * 1.5 * 2);
-    max-height: calc(1.2rem * 1.5 * 2);
+    line-height: 1.6;
+    min-height: calc(1.2rem * 1.6 * 3);
     position: relative;
-    padding-right: 4px;
+    cursor: default;
+    transition: all 0.3s ease;
+    word-wrap: break-word;
+    hyphens: auto;
 }
 
-/* 打字机光标效果 */
-.hero-content p::after {
+.hero-content p:hover {
+    color: #fff;
+    text-shadow: 0 0 8px rgba(0, 255, 149, 0.3);
+    transform: translateX(3px);
+}
+
+/* Add hover light effect */
+.hero-content p::before {
     content: '';
     position: absolute;
-    right: 0;
+    left: -10px;
     top: 0;
+    width: 3px;
     height: 100%;
-    width: 2px;
-    background-color: var(--neon-green);
+    background: var(--neon-green);
+    opacity: 0;
+    transform: scaleY(0);
+    transition: all 0.3s ease;
+}
+
+.hero-content p:hover::before {
+    opacity: 0.5;
+    transform: scaleY(1);
+}
+
+/* Modify typewriter cursor effect */
+.hero-content p.typing::after {
+    content: '|';
+    margin-left: 2px;
     animation: blink 0.75s step-end infinite;
+    vertical-align: middle;
 }
 
 @keyframes blink {
-    from, to { background-color: transparent }
-    50% { background-color: var(--neon-green) }
+    from, to { opacity: 1; }
+    50% { opacity: 0; }
 }
 
-/* 添加文字扫描线效果 */
+/* Add text scanning line effect */
 .hero-content h1::after,
 .hero-content h2::after,
 .hero-content p::after {
@@ -505,7 +519,7 @@ main {
     }
 }
 
-/* 添加文字碎片效果 */
+/* Add text fragment effect */
 .hero-content h2:hover {
     animation: glitchEffect 0.3s ease-in-out infinite;
 }
@@ -531,30 +545,12 @@ main {
     }
 }
 
-/* 移除之前的扫描线效果 */
+/* Remove previous scanning line effect */
 .hero-content p::after {
     display: none;
 }
 
-/* 添加更柔和的悬停效果 */
-.hero-content p::before {
-    content: '';
-    position: absolute;
-    left: -10px;
-    top: 0;
-    width: 3px;
-    height: 100%;
-    background: var(--neon-green);
-    opacity: 0;
-    transition: all 0.3s ease;
-}
-
-.hero-content p:hover::before {
-    opacity: 0.5;
-    transform: translateX(5px);
-}
-
-/* 霓虹脉冲效果 */
+/* Neon pulse effect */
 @keyframes neonPulse {
     0%, 100% {
         text-shadow: 
@@ -570,7 +566,7 @@ main {
     }
 }
 
-/* 渐入上升效果 */
+/* Fade in up effect */
 @keyframes fadeInUp {
     from {
         opacity: 0;
@@ -582,7 +578,7 @@ main {
     }
 }
 
-/* 增强光点效果 */
+/* Enhance light point effect */
 .light-point {
     position: absolute;
     width: 4px;
@@ -595,7 +591,7 @@ main {
     opacity: 1;
 }
 
-/* 光线效果 */
+/* Light trail effect */
 .light-trail {
     position: absolute;
     height: 3px;
@@ -608,14 +604,14 @@ main {
     box-shadow: 0 0 15px var(--neon-green);
 }
 
-/* 按钮容器样式 */
+/* Button container style */
 .button-wrapper {
     position: relative;
     display: inline-block;
     padding: 2px;
 }
 
-/* 按钮基础样式 */
+/* Button base style */
 .get-started-btn {
     background: transparent;
     color: var(--neon-green);
@@ -628,7 +624,7 @@ main {
     transition: all 0.3s ease;
 }
 
-/* 按钮边框效果 */
+/* Button border effect */
 .button-wrapper::before,
 .button-wrapper::after {
     content: '';
@@ -653,7 +649,7 @@ main {
     border-top: 0;
 }
 
-/* 悬停效果 */
+/* Hover effect */
 .button-wrapper:hover::before,
 .button-wrapper:hover::after {
     width: 100%;
@@ -669,12 +665,12 @@ main {
     text-shadow: 0 0 8px var(--neon-green);
 }
 
-/* 点击效果 */
+/* Click effect */
 .button-wrapper:active .get-started-btn {
     transform: scale(0.95);
 }
 
-/* 添加发光动画 */
+/* Add glow animation */
 @keyframes buttonGlow {
     0%, 100% {
         box-shadow: 0 0 5px rgba(0, 255, 149, 0.3);
@@ -684,7 +680,7 @@ main {
     }
 }
 
-/* 特性介绍区域 */
+/* Features section */
 .features {
     max-width: 1200px;
     margin: 80px auto;
@@ -725,7 +721,7 @@ main {
     transform: translateX(3px);
 }
 
-/* DAPP展示区域 */
+/* DAPP showcase area */
 .feature-cards-container {
     width: 100%;
     height: 400px;
@@ -779,24 +775,24 @@ main {
     text-align: center;
 }
 
-/* 卡片悬停效果 */
+/* Card hover effect */
 .feature-card:hover {
     transform: translateY(-10px);
     background: rgba(0, 255, 149, 0.05);
     box-shadow: 0 0 20px rgba(0, 255, 149, 0.2);
 }
 
-/* DAPP展示区域的轮播动画 */
+/* DAPP showcase area carousel animation */
 @keyframes scrollFeatureCards {
     0% {
         transform: translateX(0);
     }
     100% {
-        transform: translateX(calc(-270px * 8)); /* 只移动第一组卡片的距离 */
+        transform: translateX(calc(-270px * 8)); /* Move distance of first group cards */
     }
 }
 
-/* 修改渐变遮罩为左右方向 */
+/* Modify gradient mask to left-right direction */
 .feature-cards-container::before,
 .feature-cards-container::after {
     content: '';
@@ -818,12 +814,12 @@ main {
     background: linear-gradient(to left, var(--dark-bg), transparent);
 }
 
-/* 添加悬停暂停效果 */
+/* Add hover pause effect */
 .feature-cards-container:hover .feature-cards {
     animation-play-state: paused;
 }
 
-/* 开发者支持区域 */
+/* Developer support area */
 .developer-support {
     text-align: center;
     padding: 120px 20px;
@@ -832,7 +828,7 @@ main {
     margin: 80px 0;
 }
 
-/* 雷达背景效果（光晕） */
+/* Radar background effect (halo) */
 .developer-support::before {
     content: '';
     position: absolute;
@@ -861,7 +857,7 @@ main {
     animation: radarScan 4s linear infinite;
 }
 
-/* 雷达波纹效果 */
+/* Radar wave effect */
 .developer-support::after {
     content: '';
     position: absolute;
@@ -876,7 +872,7 @@ main {
     animation: radarWave 3s ease-out infinite;
 }
 
-/* 添加多层波纹 */
+/* Add multiple wave layers */
 .radar-waves {
     position: absolute;
     top: 50%;
@@ -904,7 +900,7 @@ main {
     animation-delay: 2s;
 }
 
-/* 雷达扫描动画 */
+/* Radar scan animation */
 @keyframes radarScan {
     from {
         transform: translate(-50%, -50%) rotate(0deg);
@@ -914,7 +910,7 @@ main {
     }
 }
 
-/* 雷达波纹动画 */
+/* Radar wave animation */
 @keyframes radarWave {
     0% {
         transform: scale(0.1);
@@ -926,7 +922,7 @@ main {
     }
 }
 
-/* 保留其他样式 */
+/* Keep other styles */
 .developer-support h2 {
     font-size: 2.8rem;
     margin-bottom: 1.5rem;
@@ -963,7 +959,7 @@ main {
     transform: translateX(3px);
 }
 
-/* 文档按钮样式 */
+/* Document button style */
 .doc-btn {
     background: transparent;
     color: var(--neon-green);
@@ -981,7 +977,7 @@ main {
     text-shadow: 0 0 8px var(--neon-green);
 }
 
-/* 社区展示区域 */
+/* Community showcase area */
 .community {
     max-width: 1200px;
     margin: 120px auto;
@@ -1090,23 +1086,23 @@ main {
     line-height: 1.4;
 }
 
-/* 社区展示区域的轮播动画 */
+/* Community showcase area carousel animation */
 @keyframes scrollCommunities {
     0% {
         transform: translateY(0);
     }
     100% {
-        transform: translateY(calc(-100% / 2)); /* 只移动第一组的距离 */
+        transform: translateY(calc(-100% / 2)); /* Move distance of first group */
     }
 }
 
-/* 添加悬停暂停效果 */
+/* Add hover pause effect */
 .feature-cards-container:hover .feature-cards,
 .community-showcase:hover .community-list {
     animation-play-state: paused;
 }
 
-/* CTA区域 */
+/* CTA area */
 .cta {
     text-align: center;
     padding: 80px 20px;
@@ -1119,7 +1115,7 @@ main {
     border-radius: 20px;
 }
 
-/* 添加背景动态效果 */
+/* Add background dynamic effect */
 .cta::before {
     content: '';
     position: absolute;
@@ -1134,7 +1130,7 @@ main {
     animation: glowPulse 4s ease-in-out infinite;
 }
 
-/* CTA区域文字样式 */
+/* CTA area text style */
 .cta h2 {
     font-size: 2.3rem;
     max-width: 800px;
@@ -1161,7 +1157,7 @@ main {
     opacity: 1;
 }
 
-/* 改进按钮样式 */
+/* Improve button style */
 .cta .get-started-btn {
     font-size: 1rem;
     padding: 12px 36px;
@@ -1200,7 +1196,7 @@ main {
     left: 100%;
 }
 
-/* 添加背景动画 */
+/* Add background animation */
 @keyframes glowPulse {
     0%, 100% {
         opacity: 0.5;
@@ -1212,14 +1208,19 @@ main {
     }
 }
 
-/* 页脚 */
+/* Footer */
 footer {
+    position: relative;
+    z-index: 3;
+    background: rgba(0, 0, 0, 0.8);
+    backdrop-filter: blur(10px);
+    border-top: 1px solid rgba(0, 255, 149, 0.1);
     text-align: center;
     padding: 20px;
     margin-top: 60px;
 }
 
-/* 响应式设计 */
+/* Responsive design */
 @media (max-width: 768px) {
     .hero {
         position: relative;
@@ -1244,7 +1245,7 @@ footer {
         opacity: 0.5;
     }
 
-    /* 添加切换按钮样式 */
+    /* Add switch button style */
     .mobile-nav {
         position: fixed;
         bottom: 20px;
@@ -1256,7 +1257,7 @@ footer {
     }
 }
 
-/* 更小屏幕的适配 */
+/* Small screen adaptation */
 @media (max-width: 480px) {
     .hero-content h2 {
         font-size: 2.5rem;
@@ -1268,62 +1269,7 @@ footer {
     }
 }
 
-/* 雷达光点容器 */
-.radar-dots {
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    width: 800px;
-    height: 800px;
-    transform: translate(-50%, -50%);
-    z-index: -1;
-}
-
-/* 雷达光点样式 */
-.radar-dot {
-    position: absolute;
-    width: 4px;
-    height: 4px;
-    background: var(--neon-green);
-    border-radius: 50%;
-    opacity: 0;
-    transition: opacity 0.5s ease;
-    animation: dotAppear 0.5s ease forwards;
-}
-
-/* 光点出现动画 */
-@keyframes dotAppear {
-    from {
-        opacity: 0;
-        transform: scale(0);
-    }
-    to {
-        opacity: 0.2;
-        transform: scale(1);
-    }
-}
-
-/* 光点闪烁动画 */
-@keyframes dotGlow {
-    0% {
-        opacity: 0.2;
-        transform: scale(1);
-        box-shadow: 0 0 2px var(--neon-green);
-    }
-    50% {
-        opacity: 1;
-        transform: scale(1.5);
-        box-shadow: 0 0 10px var(--neon-green),
-                   0 0 20px var(--neon-green);
-    }
-    100% {
-        opacity: 0.2;
-        transform: scale(1);
-        box-shadow: 0 0 2px var(--neon-green);
-    }
-}
-
-/* 开发者支持区域的雷达扫描效果 */
+/* Developer support area radar scan effect */
 .developer-support .radar-scan-area {
     position: absolute;
     top: 50%;
@@ -1339,17 +1285,17 @@ footer {
     width: 50%;
     height: 2px;
     background: linear-gradient(90deg, 
-        rgba(0, 255, 149, 0.05),  /* 减弱起始亮度 */
-        rgba(0, 255, 149, 0.15)   /* 减弱结束亮度 */
+        rgba(0, 255, 149, 0.05),  /* Reduce starting brightness */
+        rgba(0, 255, 149, 0.15)   /* Reduce ending brightness */
     );
     transform-origin: right center;
     right: 50%;
     top: 50%;
     animation: radarSweep 4s linear infinite;
-    transform: rotate(-30deg);  /* 逆时针旋转30度作为起始位置 */
+    transform: rotate(-30deg);  /* Reverse 30 degrees as starting position */
 }
 
-/* 雷达光点样式 */
+/* Radar light point style */
 .developer-support .radar-dot {
     position: absolute;
     width: 4px;
@@ -1362,10 +1308,10 @@ footer {
 
 @keyframes radarSweep {
     from {
-        transform: rotate(-210deg);  /* 从-30度开始 */
+        transform: rotate(-210deg);  /* Start from -30 degrees */
     }
     to {
-        transform: rotate(160deg);  /* 旋转360度到330度 */
+        transform: rotate(160deg);  /* Rotate 360 degrees to 330 degrees */
     }
 }
 
@@ -1380,7 +1326,7 @@ footer {
     }
 }
 
-/* CTA区域的粒子容器 */
+/* CTA area particle container */
 .cta-particles {
     position: absolute;
     top: 0;
@@ -1391,14 +1337,14 @@ footer {
     overflow: hidden;
 }
 
-/* 调整CTA内容层级 */
+/* Adjust CTA content level */
 .cta h2, 
 .cta .button-wrapper {
     position: relative;
     z-index: 1;
 }
 
-/* 页脚社交媒体图标样式 */
+/* Footer social media icon style */
 .social-links {
     display: flex;
     justify-content: center;
@@ -1453,7 +1399,7 @@ footer {
     filter: drop-shadow(0 0 5px rgba(0, 255, 149, 0.5));
 }
 
-/* 俄罗斯方块容器 */
+/* Tetris container */
 .tetris-container {
     position: relative;
     width: 45%;
@@ -1477,7 +1423,7 @@ footer {
     animation: blockGlow 2s infinite;
 }
 
-/* 增加堆叠效果的阴影 */
+/* Add stacking effect shadow */
 .tetris-block.placed::after {
     content: '';
     position: absolute;
@@ -1508,7 +1454,7 @@ footer {
     }
 }
 
-/* 标题和描述文字的交互效果 */
+/* Title and description text interaction effect */
 .features h2,
 .developer-support h2,
 .community h2 {
@@ -1541,7 +1487,7 @@ footer {
     transform: translateX(3px);
 }
 
-/* 添加悬停时的光效 */
+/* Add hover light effect */
 .features h2::before,
 .developer-support h2::before,
 .community h2::before,
@@ -1568,4 +1514,114 @@ footer {
 .community p:hover::before {
     opacity: 0.5;
     transform: scaleY(1);
+}
+
+/* Modify mask style to extend from header bottom to footer top */
+.overlay-mask {
+    position: fixed;
+    top: 80px;  /* Start from header bottom */
+    left: 0;
+    width: 100%;
+    height: calc(100% - 80px);  /* Only subtract header height */
+    background: rgba(0, 0, 0, 0.7);
+    backdrop-filter: blur(5px);
+    z-index: 1;
+    pointer-events: none;
+}
+
+/* Add background orbs */
+.background-orbs {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: 0;
+    overflow: hidden;
+}
+
+.orb {
+    position: absolute;
+    border-radius: 50%;
+    filter: blur(60px);
+    opacity: 0.15;
+    background: var(--neon-green);
+    animation: orbFloat 20s infinite ease-in-out;
+}
+
+.orb:nth-child(1) {
+    width: 400px;
+    height: 400px;
+    top: 5%;
+    left: 5%;
+    animation-delay: 0s;
+}
+
+.orb:nth-child(2) {
+    width: 600px;
+    height: 600px;
+    bottom: 10%;
+    right: 5%;
+    animation-delay: -5s;
+    opacity: 0.1;
+}
+
+.orb:nth-child(3) {
+    width: 300px;
+    height: 300px;
+    top: 40%;
+    left: 30%;
+    animation-delay: -10s;
+    opacity: 0.08;
+}
+
+.orb:nth-child(4) {
+    width: 450px;
+    height: 450px;
+    top: 15%;
+    right: 15%;
+    animation-delay: -7s;
+    opacity: 0.12;
+}
+
+.orb:nth-child(5) {
+    width: 350px;
+    height: 350px;
+    bottom: 25%;
+    left: 20%;
+    animation-delay: -3s;
+    opacity: 0.09;
+}
+
+.orb:nth-child(6) {
+    width: 250px;
+    height: 250px;
+    top: 60%;
+    right: 25%;
+    animation-delay: -8s;
+    opacity: 0.11;
+}
+
+.orb:nth-child(7) {
+    width: 500px;
+    height: 500px;
+    bottom: 15%;
+    right: 40%;
+    animation-delay: -12s;
+    opacity: 0.07;
+}
+
+@keyframes orbFloat {
+    0%, 100% {
+        transform: translate(0, 0);
+    }
+    25% {
+        transform: translate(-70px, 70px);
+    }
+    50% {
+        transform: translate(70px, -50px);
+    }
+    75% {
+        transform: translate(50px, 70px);
+    }
 }

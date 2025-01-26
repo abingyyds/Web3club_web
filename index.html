@@ -3,13 +3,27 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Web3Club - Your Web3 Social Dapp</title>
-    <link rel="stylesheet" href="styles.css">
+    <title>Web3 Project</title>
+    <link rel="stylesheet" href="assets/decorations.css">
     <link rel="stylesheet" href="assets/animations.css">
-    <link rel="stylesheet" href="assets/sphere-effect.css">
+    <link rel="stylesheet" href="styles.css">
     <link href="https://fonts.googleapis.com/css2?family=Space+Mono:wght@400;700&display=swap" rel="stylesheet">
 </head>
 <body>
+    <!-- Add background orbs -->
+    <div class="background-orbs">
+        <div class="orb"></div>
+        <div class="orb"></div>
+        <div class="orb"></div>
+        <div class="orb"></div>
+        <div class="orb"></div>
+        <div class="orb"></div>
+        <div class="orb"></div>
+    </div>
+    
+    <!-- Add overlay mask -->
+    <div class="overlay-mask"></div>
+    
     <div class="background-grid"></div>
     <div class="background-glow">
         <div class="glow-point"></div>
@@ -32,7 +46,7 @@
         <section class="hero">
             <div class="tetris-container" id="tetris-container"></div>
             <div class="hero-content">
-                <h1>Your Web3 Social Dapp</h1>
+                <h1>Own Your Social Future</h1>
                 <h2 class="glow">Web3Club</h2>
                 <p id="typing-text"></p>
                 <div class="button-wrapper">
@@ -49,7 +63,7 @@
             
             <div class="feature-cards-container">
             <div class="feature-cards">
-                    <!-- 第一组卡片 -->
+                    <!-- First group of cards -->
                 <div class="feature-card" onclick="window.open('https://x.com/joinweb3club', '_blank')" style="cursor: pointer;">
                     <img src="assets/twitter-icon.svg" alt="Twitter">
                     <h3>Twitter on Chain</h3>
@@ -90,7 +104,7 @@
                         <h3>More Coming Soon</h3>
                         <p>More features being developed.</p>
                     </div>
-                    <!-- 复制第一组卡片实现无缝循环 -->
+                    <!-- Copy first group for seamless loop -->
                     <div class="feature-card" onclick="window.open('https://x.com/joinweb3club', '_blank')" style="cursor: pointer;">
                         <img src="assets/twitter-icon.svg" alt="Twitter">
                         <h3>Twitter on Chain</h3>
@@ -153,7 +167,7 @@
                 
                 <div class="community-showcase">
                     <div class="community-list">
-                        <!-- 第一组社区 -->
+                        <!-- First group of communities -->
                         <div class="community-item" onclick="window.open('https://x.com/joinweb3club', '_blank')" style="cursor: pointer;">
                             <div class="community-logo">
                                 <img src="assets/community/bayc.png" alt="BAYC">
@@ -199,7 +213,7 @@
                                 <p>Vibrant and engaging NFT ecosystem</p>
                             </div>
                         </div>
-                        <!-- 复制第一组实现无缝循环 -->
+                        <!-- Copy first group for seamless loop -->
                         <div class="community-item" onclick="window.open('https://x.com/joinweb3club', '_blank')" style="cursor: pointer;">
                             <div class="community-logo">
                                 <img src="assets/community/bayc.png" alt="BAYC">
@@ -253,8 +267,8 @@
         <section class="cta">
             <div class="cta-particles" id="particles-network"></div>
             <h2>
-                <span>Join Web3.club now.</span>
-                <span>Start your journey into decentralization.</span>
+                <span>Join Web3.club.</span>
+                <span>Shield Your Social Capital.</span>
             </h2>
             <div class="button-wrapper">
                 <button class="get-started-btn" onclick="window.open('https://x.com/joinweb3club', '_blank')">Get Started</button>
@@ -510,7 +524,7 @@
         }
     }
 
-    // 初始化粒子网络
+    // Initialize particle network
     const particlesContainer = document.getElementById('particles-network');
     new ParticleNetwork(particlesContainer);
 
@@ -552,14 +566,15 @@
             dot.className = 'radar-dot';
             
             // 在扫描线前方生成光点
-            const radius = 150 + Math.random() * 200; // 调整光点生成的距离范围
+            const radius = 150 + Math.random() * 200;
             const x = Math.cos(beamAngle) * radius;
             const y = Math.sin(beamAngle) * radius;
             
             dot.style.left = `${400 + x}px`;
             dot.style.top = `${400 + y}px`;
             
-            const duration = 0.5 + Math.random() * 0.5; // 缩短光点持续时间
+            // 缩短光点持续时间
+            const duration = 0.5 + Math.random() * 0.5;
             dot.style.animation = `dotBlink ${duration}s ease-in-out`;
             
             this.radar.appendChild(dot);
@@ -582,34 +597,38 @@
         }
     }
 
-    // 初始化开发者区域的雷达效果
+    // Initialize radar effect in developer area
     new DeveloperRadarEffect();
 
-    // 修改打字机效果的实现
+    // Modify typewriter effect implementation
     function typeWriter(element, text, speed = 50) {
         let i = 0;
-        element.style.width = '600px'; // 设置固定宽度
         element.innerHTML = '';
         element.style.opacity = '1';
+        element.classList.add('typing');
         
         function type() {
             if (i < text.length) {
                 element.innerHTML += text.charAt(i);
                 i++;
                 setTimeout(type, speed);
+            } else {
+                setTimeout(() => {
+                    element.classList.remove('typing');
+                }, 1000);
             }
         }
         
         type();
     }
 
-    // 在页面加载后开始打字效果
+    // Start typing effect after page load
     window.addEventListener('load', () => {
-        const text = "Decentralize Your Social Interactions and Build, Manage, and Grow Your Decentralized Clubs.";
+        const text = "Decentralize Connections, Build Sovereign Clubs, Just Code & Community";
         const element = document.getElementById('typing-text');
         setTimeout(() => {
-            typeWriter(element, text, 50); // 50ms 每个字符
-        }, 500); // 延迟500ms开始
+            typeWriter(element, text, 50);
+        }, 500);
     });
 
     // 俄罗斯方块效果
@@ -623,17 +642,17 @@
                 height: Math.floor(this.container.offsetHeight / 30)
             };
             
-            // 初始化网格
+            // Initialize grid
             for (let i = 0; i < this.gridSize.height; i++) {
                 this.grid[i] = new Array(this.gridSize.width).fill(0);
             }
             
-            // 修改形状数组，使其更适合构建平台
+            // Modify shape array for better platform building
             this.shapes = [
-                [[1, 1, 1]], // 横条
-                [[1, 1]], // 小方块
-                [[1, 1, 1, 1]], // 长条
-                [[1, 1, 1], [0, 1, 0]], // T形
+                [[1, 1, 1]], // Horizontal bar
+                [[1, 1]], // Small square
+                [[1, 1, 1, 1]], // Long bar
+                [[1, 1, 1], [0, 1, 0]], // T shape
             ];
             
             this.init();
@@ -659,7 +678,7 @@
                         const finalY = this.calculateFinalPosition(startX + j);
                         piece.style.setProperty('--final-y', `${finalY * 30}px`);
                         
-                        // 添加平滑的下落动画
+                        // Add smooth falling animation
                         piece.style.animation = `blockFall ${1.5 + Math.random()}s cubic-bezier(0.25, 0.46, 0.45, 0.94) forwards`;
                         
                         this.container.appendChild(piece);
@@ -668,7 +687,7 @@
                             piece.classList.add('placed');
                             this.updateGrid(startX + j, finalY);
                             
-                            // 检查是否需要清理底部方块
+                            // Check if bottom blocks need cleaning
                             if (this.shouldCleanBottom()) {
                                 this.cleanBottomBlocks();
                             }
@@ -692,9 +711,9 @@
             }
         }
         
-        // 添加底部清理方法，防止方块堆积过多
+        // Add bottom cleaning method to prevent block accumulation
         shouldCleanBottom() {
-            return this.container.children.length > 100; // 当方块数量超过100时清理
+            return this.container.children.length > 100; // Clean when blocks exceed 100
         }
         
         cleanBottomBlocks() {
@@ -706,7 +725,7 @@
         }
     }
 
-    // 初始化俄罗斯方块背景
+    // Initialize tetris background
     window.addEventListener('load', () => {
         new TetrisBackground();
     });
