@@ -36,7 +36,7 @@
     transform: rotateY(calc(var(--i) * calc(360deg / var(--total)))) translateZ(150px);
 }
 
-/* 优化基础球体 */
+/* Optimize base sphere */
 .sphere-base {
     width: 100%;
     height: 100%;
@@ -49,7 +49,7 @@
     box-shadow: 0 0 50px rgba(0, 255, 149, 0.1);
 }
 
-/* 优化3D光晕效果 */
+/* Optimize 3D glow effect */
 .sphere-glow {
     position: absolute;
     width: 100%;
@@ -69,14 +69,14 @@
     transform-style: preserve-3d;
 }
 
-/* 多层光晕，创造3D深度 */
+/* Multiple glow layers for 3D depth */
 .glow-layer-1 { transform: translateZ(-80px) scale(1.2); opacity: 0.15; }
 .glow-layer-2 { transform: translateZ(-40px) scale(1.1); opacity: 0.12; }
 .glow-layer-3 { transform: translateZ(0) scale(1); opacity: 0.1; }
 .glow-layer-4 { transform: translateZ(40px) scale(0.9); opacity: 0.08; }
 .glow-layer-5 { transform: translateZ(80px) scale(0.8); opacity: 0.05; }
 
-/* 优化光点样式 */
+/* Optimize light point style */
 .light-point {
     position: absolute;
     left: 50%;
@@ -90,7 +90,7 @@
     box-shadow: 0 0 4px var(--neon-green);
 }
 
-/* 优化光线轨迹 */
+/* Optimize light trail */
 .light-trail {
     position: absolute;
     left: 50%;
@@ -105,7 +105,7 @@
     opacity: 0.5;
 }
 
-/* 修改JavaScript中的createSphere函数中的光点生成逻辑 */
+/* Modify light point generation logic in createSphere function */
 @keyframes autoRotate {
     from {
         transform: rotateX(20deg) rotateY(0);
@@ -126,7 +126,7 @@
     }
 }
 
-/* 添加径向扩散动画 */
+/* Add radial expansion animation */
 @keyframes radialExpand {
     0% {
         transform: scale(0.8);
