@@ -62,83 +62,47 @@
             </p>
             
             <div class="feature-cards-container">
-            <div class="feature-cards">
-                    <!-- First group of cards -->
-                <div class="feature-card" onclick="window.open('https://x.com/joinweb3club', '_blank')" style="cursor: pointer;">
-                    <img src="assets/twitter-icon.svg" alt="Twitter">
-                    <h3>Twitter on Chain</h3>
-                    <p>Build your platform with real-time interaction.</p>
-                </div>
-                <div class="feature-card" onclick="window.open('https://x.com/joinweb3club', '_blank')" style="cursor: pointer;">
-                    <img src="assets/group-chat-icon.svg" alt="Group Chat">
-                    <h3>Group Chat on Chain</h3>
-                    <p>Provide safe and convenient group chat tools.</p>
-                </div>
-                <div class="feature-card" onclick="window.open('https://x.com/joinweb3club', '_blank')" style="cursor: pointer;">
-                    <img src="assets/knowledge-icon.svg" alt="Knowledge Planet">
-                    <h3>Knowledge Planet</h3>
-                    <p>Decentralized knowledge sharing platform.</p>
-                </div>
-                <div class="feature-card" onclick="window.open('https://x.com/joinweb3club', '_blank')" style="cursor: pointer;">
-                    <img src="assets/nft-icon.svg" alt="NFT">
-                    <h3>NFT Market</h3>
-                    <p>Trade and collect digital assets on chain.</p>
-                </div>
-                <div class="feature-card" onclick="window.open('https://x.com/joinweb3club', '_blank')" style="cursor: pointer;">
-                    <img src="assets/dao-icon.svg" alt="DAO">
-                    <h3>DAO Governance</h3>
-                    <p>Decentralized autonomous organization tools.</p>
-                </div>
-                <div class="feature-card" onclick="window.open('https://x.com/joinweb3club', '_blank')" style="cursor: pointer;">
-                    <img src="assets/defi-icon.svg" alt="DeFi">
-                    <h3>DeFi Protocol</h3>
-                    <p>Decentralized finance solutions.</p>
-                </div>
-                <div class="feature-card" onclick="window.open('https://x.com/joinweb3club', '_blank')" style="cursor: pointer;">
-                    <img src="assets/game-icon.svg" alt="GameFi">
-                    <h3>GameFi Platform</h3>
-                    <p>Blockchain gaming ecosystem.</p>
-                </div>
-                <div class="feature-card" onclick="window.open('https://x.com/joinweb3club', '_blank')" style="cursor: pointer;">
-                    <img src="assets/more-icon.svg" alt="More">
-                    <h3>More Coming Soon</h3>
-                    <p>More features being developed.</p>
-                </div>
-                    <!-- Copy first group for seamless loop -->
-                    <div class="feature-card" onclick="window.open('https://x.com/joinweb3club', '_blank')" style="cursor: pointer;">
+                <div class="feature-cards" id="feature-cards">
+                    <!-- Feature cards -->
+                    <div class="feature-card" data-url="https://x.com/joinweb3club">
                         <img src="assets/twitter-icon.svg" alt="Twitter">
                         <h3>Twitter on Chain</h3>
                         <p>Build your platform with real-time interaction.</p>
                     </div>
-                    <div class="feature-card" onclick="window.open('https://x.com/joinweb3club', '_blank')" style="cursor: pointer;">
+                    <div class="feature-card" data-url="https://x.com/joinweb3club">
                         <img src="assets/group-chat-icon.svg" alt="Group Chat">
                         <h3>Group Chat on Chain</h3>
                         <p>Provide safe and convenient group chat tools.</p>
                     </div>
-                    <div class="feature-card" onclick="window.open('https://x.com/joinweb3club', '_blank')" style="cursor: pointer;">
+                    <div class="feature-card" data-url="https://x.com/joinweb3club">
                         <img src="assets/knowledge-icon.svg" alt="Knowledge Planet">
                         <h3>Knowledge Planet</h3>
                         <p>Decentralized knowledge sharing platform.</p>
                     </div>
-                    <div class="feature-card" onclick="window.open('https://x.com/joinweb3club', '_blank')" style="cursor: pointer;">
+                    <div class="feature-card" data-url="https://x.com/joinweb3club">
                         <img src="assets/nft-icon.svg" alt="NFT">
                         <h3>NFT Market</h3>
                         <p>Trade and collect digital assets on chain.</p>
                     </div>
-                    <div class="feature-card" onclick="window.open('https://x.com/joinweb3club', '_blank')" style="cursor: pointer;">
+                    <div class="feature-card" data-url="https://x.com/joinweb3club">
                         <img src="assets/dao-icon.svg" alt="DAO">
                         <h3>DAO Governance</h3>
                         <p>Decentralized autonomous organization tools.</p>
                     </div>
-                    <div class="feature-card" onclick="window.open('https://x.com/joinweb3club', '_blank')" style="cursor: pointer;">
+                    <div class="feature-card" data-url="https://x.com/joinweb3club">
                         <img src="assets/defi-icon.svg" alt="DeFi">
                         <h3>DeFi Protocol</h3>
                         <p>Decentralized finance solutions.</p>
                     </div>
-                    <div class="feature-card" onclick="window.open('https://x.com/joinweb3club', '_blank')" style="cursor: pointer;">
+                    <div class="feature-card" data-url="https://x.com/joinweb3club">
                         <img src="assets/game-icon.svg" alt="GameFi">
                         <h3>GameFi Platform</h3>
                         <p>Blockchain gaming ecosystem.</p>
+                    </div>
+                    <div class="feature-card" data-url="https://x.com/joinweb3club">
+                        <img src="assets/more-icon.svg" alt="More">
+                        <h3>More Coming Soon</h3>
+                        <p>More features being developed.</p>
                     </div>
                 </div>
             </div>
@@ -166,9 +130,9 @@
                 <p>Great decentralized community from all industries, looking forward to your joining!</p>
                 
                 <div class="community-showcase">
-                    <div class="community-list">
-                        <!-- First group of communities -->
-                        <div class="community-item" onclick="window.open('https://x.com/joinweb3club', '_blank')" style="cursor: pointer;">
+                    <div class="community-list" id="community-list">
+                        <!-- Community items -->
+                        <div class="community-item" data-url="https://x.com/joinweb3club">
                             <div class="community-logo">
                                 <img src="assets/community/bayc.png" alt="BAYC">
                             </div>
@@ -177,7 +141,7 @@
                                 <p>The most influential NFT community in the world</p>
                             </div>
                         </div>
-                        <div class="community-item" onclick="window.open('https://x.com/joinweb3club', '_blank')" style="cursor: pointer;">
+                        <div class="community-item" data-url="https://x.com/joinweb3club">
                             <div class="community-logo">
                                 <img src="assets/community/cryptopunks.png" alt="CryptoPunks">
                             </div>
@@ -186,7 +150,7 @@
                                 <p>Pioneer of NFT digital art collection</p>
                             </div>
                         </div>
-                        <div class="community-item" onclick="window.open('https://x.com/joinweb3club', '_blank')" style="cursor: pointer;">
+                        <div class="community-item" data-url="https://x.com/joinweb3club">
                             <div class="community-logo">
                                 <img src="assets/community/azuki.png" alt="Azuki">
                             </div>
@@ -195,7 +159,7 @@
                                 <p>Next generation of NFT community culture</p>
                             </div>
                         </div>
-                        <div class="community-item" onclick="window.open('https://x.com/joinweb3club', '_blank')" style="cursor: pointer;">
+                        <div class="community-item" data-url="https://x.com/joinweb3club">
                             <div class="community-logo">
                                 <img src="assets/community/doodles.png" alt="Doodles">
                             </div>
@@ -204,53 +168,7 @@
                                 <p>Creative and artistic NFT community</p>
                             </div>
                         </div>
-                        <div class="community-item" onclick="window.open('https://x.com/joinweb3club', '_blank')" style="cursor: pointer;">
-                            <div class="community-logo">
-                                <img src="assets/community/pudgypenguins.png" alt="Pudgy Penguins">
-                            </div>
-                            <div class="community-info">
-                                <h3>Pudgy Penguins</h3>
-                                <p>Vibrant and engaging NFT ecosystem</p>
-                            </div>
-                        </div>
-                        <!-- Copy first group for seamless loop -->
-                        <div class="community-item" onclick="window.open('https://x.com/joinweb3club', '_blank')" style="cursor: pointer;">
-                            <div class="community-logo">
-                                <img src="assets/community/bayc.png" alt="BAYC">
-                            </div>
-                            <div class="community-info">
-                                <h3>Bored Ape Yacht Club</h3>
-                                <p>The most influential NFT community in the world</p>
-                            </div>
-                        </div>
-                        <div class="community-item" onclick="window.open('https://x.com/joinweb3club', '_blank')" style="cursor: pointer;">
-                            <div class="community-logo">
-                                <img src="assets/community/cryptopunks.png" alt="CryptoPunks">
-                            </div>
-                            <div class="community-info">
-                                <h3>CryptoPunks</h3>
-                                <p>Pioneer of NFT digital art collection</p>
-                            </div>
-                        </div>
-                        <div class="community-item" onclick="window.open('https://x.com/joinweb3club', '_blank')" style="cursor: pointer;">
-                            <div class="community-logo">
-                                <img src="assets/community/azuki.png" alt="Azuki">
-                            </div>
-                            <div class="community-info">
-                                <h3>Azuki</h3>
-                                <p>Next generation of NFT community culture</p>
-                            </div>
-                        </div>
-                        <div class="community-item" onclick="window.open('https://x.com/joinweb3club', '_blank')" style="cursor: pointer;">
-                            <div class="community-logo">
-                                <img src="assets/community/doodles.png" alt="Doodles">
-                            </div>
-                            <div class="community-info">
-                                <h3>Doodles</h3>
-                                <p>Creative and artistic NFT community</p>
-                            </div>
-                        </div>
-                        <div class="community-item" onclick="window.open('https://x.com/joinweb3club', '_blank')" style="cursor: pointer;">
+                        <div class="community-item" data-url="https://x.com/joinweb3club">
                             <div class="community-logo">
                                 <img src="assets/community/pudgypenguins.png" alt="Pudgy Penguins">
                             </div>
@@ -304,6 +222,44 @@
     </footer>
 
     <script>
+    // Initialize card cloning and click events
+    function initializeCards() {
+        // Clone feature cards for infinite scroll
+        const featureCards = document.getElementById('feature-cards');
+        const featureCardsClone = Array.from(featureCards.children).map(card => card.cloneNode(true));
+        featureCardsClone.forEach(card => featureCards.appendChild(card));
+
+        // Clone community items for infinite scroll
+        const communityList = document.getElementById('community-list');
+        const communityItemsClone = Array.from(communityList.children).map(item => item.cloneNode(true));
+        communityItemsClone.forEach(item => communityList.appendChild(item));
+
+        // Add click events to all cards and items
+        document.querySelectorAll('[data-url]').forEach(element => {
+            element.style.cursor = 'pointer';
+            element.addEventListener('click', () => {
+                window.open(element.dataset.url, '_blank');
+            });
+        });
+
+        // Add hover effects to feature cards
+        document.querySelectorAll('.feature-card').forEach(card => {
+            card.addEventListener('mouseenter', (e) => {
+                const glowEffect = document.createElement('div');
+                glowEffect.className = 'card-glow-effect';
+                card.appendChild(glowEffect);
+            });
+            
+            card.addEventListener('mouseleave', (e) => {
+                const glowEffect = card.querySelector('.card-glow-effect');
+                if (glowEffect) {
+                    glowEffect.remove();
+                }
+            });
+        });
+    }
+
+    // Scroll reveal animation
     const scrollReveal = () => {
         const elements = document.querySelectorAll('.scroll-reveal');
         elements.forEach(el => {
@@ -315,6 +271,7 @@
         });
     };
 
+    // Cursor glow effect
     const cursorGlow = document.querySelector('.cursor-glow');
     document.addEventListener('mousemove', (e) => {
         cursorGlow.style.left = e.pageX + 'px';
@@ -324,21 +281,7 @@
     window.addEventListener('scroll', scrollReveal);
     scrollReveal();
 
-    document.querySelectorAll('.feature-card').forEach(card => {
-        card.addEventListener('mouseenter', (e) => {
-            const glowEffect = document.createElement('div');
-            glowEffect.className = 'card-glow-effect';
-            card.appendChild(glowEffect);
-        });
-        
-        card.addEventListener('mouseleave', (e) => {
-            const glowEffect = card.querySelector('.card-glow-effect');
-            if (glowEffect) {
-                glowEffect.remove();
-            }
-        });
-    });
-
+    // Initialize radar
     function initRadar() {
         const scanArea = document.querySelector('.radar-scan-area');
         const scanLine = document.querySelector('.radar-scan-line');
@@ -398,9 +341,7 @@
         setInterval(checkScanPosition, 50);
     }
 
-    // Initialize radar
-    initRadar();
-
+    // Initialize particle network
     class ParticleNetwork {
         constructor(container) {
             this.canvas = document.createElement('canvas');
@@ -524,83 +465,22 @@
         }
     }
 
-    // Initialize particle network
-    const particlesContainer = document.getElementById('particles-network');
-    new ParticleNetwork(particlesContainer);
+    // Initialize all components
+    window.addEventListener('load', () => {
+        initializeCards();
+        initRadar();
+        new ParticleNetwork(document.getElementById('particles-network'));
+        
+        const text = "Decentralize Connections, Build Sovereign Clubs, Just Code & Community";
+        const element = document.getElementById('typing-text');
+        setTimeout(() => {
+            typeWriter(element, text, 50);
+        }, 500);
+        
+        new TetrisBackground();
+    });
 
-    class DeveloperRadarEffect {
-        constructor() {
-            this.radar = document.querySelector('.developer-support .radar-scan-area');
-            this.beam = document.querySelector('.developer-support .radar-beam');
-            this.dots = new Set();
-            this.init();
-        }
-
-        init() {
-            this.monitorBeam();
-            setInterval(() => this.cleanupDots(), 3000);
-        }
-
-        monitorBeam() {
-            const checkBeamPosition = () => {
-                const transform = getComputedStyle(this.beam).transform;
-                const matrix = new DOMMatrix(transform);
-                const angle = Math.atan2(matrix.b, matrix.a);
-                
-                // Generate light points in a small range in front of the scan line
-                if (Math.random() > 0.7) {
-                    // Add 180-degree offset to generate points from the opposite direction
-                    const baseAngle = angle + Math.PI; // Add 180 degrees (π radians)
-                    const angleOffset = Math.random() * (Math.PI / 6); // 30-degree range
-                    this.createDot(baseAngle + angleOffset);
-                }
-                
-                requestAnimationFrame(checkBeamPosition);
-            };
-            
-            checkBeamPosition();
-        }
-
-        createDot(beamAngle) {
-            const dot = document.createElement('div');
-            dot.className = 'radar-dot';
-            
-            // Generate light points in front of the scan line
-            const radius = 150 + Math.random() * 200;
-            const x = Math.cos(beamAngle) * radius;
-            const y = Math.sin(beamAngle) * radius;
-            
-            dot.style.left = `${400 + x}px`;
-            dot.style.top = `${400 + y}px`;
-            
-            // Shorten dot duration
-            const duration = 0.5 + Math.random() * 0.5;
-            dot.style.animation = `dotBlink ${duration}s ease-in-out`;
-            
-            this.radar.appendChild(dot);
-            this.dots.add(dot);
-            
-            setTimeout(() => {
-                if (this.dots.has(dot)) {
-                    dot.remove();
-                    this.dots.delete(dot);
-                }
-            }, duration * 1000);
-        }
-
-        cleanupDots() {
-            this.dots.forEach(dot => {
-                if (!dot.parentElement) {
-                    this.dots.delete(dot);
-                }
-            });
-        }
-    }
-
-    // Initialize radar effect in developer area
-    new DeveloperRadarEffect();
-
-    // Modify typewriter effect implementation
+    // Typewriter effect
     function typeWriter(element, text, speed = 50) {
         let i = 0;
         element.innerHTML = '';
@@ -622,16 +502,7 @@
         type();
     }
 
-    // Start typing effect after page load
-    window.addEventListener('load', () => {
-        const text = "Decentralize Connections, Build Sovereign Clubs, Just Code & Community";
-        const element = document.getElementById('typing-text');
-        setTimeout(() => {
-            typeWriter(element, text, 50);
-        }, 500);
-    });
-
-    // Tetris effect
+    // Tetris background effect
     class TetrisBackground {
         constructor() {
             this.container = document.getElementById('tetris-container');
@@ -711,9 +582,8 @@
             }
         }
         
-        // Add bottom cleaning method to prevent block accumulation
         shouldCleanBottom() {
-            return this.container.children.length > 100; // Clean when blocks exceed 100
+            return this.container.children.length > 100;
         }
         
         cleanBottomBlocks() {
@@ -725,13 +595,9 @@
         }
     }
 
-    // Initialize tetris background
-    window.addEventListener('load', () => {
-        new TetrisBackground();
-    });
-
+    // Add click event to documentation button
     document.getElementById('docButton').addEventListener('click', function() {
-        window.location.href = 'https://x.com/joinweb3club';
+        window.open('https://x.com/joinweb3club', '_blank');
     });
     </script>
 </body>
