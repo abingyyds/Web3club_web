@@ -1625,3 +1625,53 @@ footer {
         transform: translate(50px, 70px);
     }
 }
+
+.search-module {
+    max-width: 600px;
+    margin: 40px auto;
+    padding: 20px;
+    background: rgba(255, 255, 255, 0.1);
+    border-radius: 12px;
+    backdrop-filter: blur(10px);
+}
+
+.search-module input {
+    width: 100%;
+    padding: 12px 20px;
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    border-radius: 8px;
+    background: rgba(0, 0, 0, 0.2);
+    color: white;
+    font-size: 16px;
+}
+
+.search-results {
+    margin-top: 10px;
+    background: rgba(0, 0, 0, 0.8);
+    border-radius: 8px;
+    overflow: hidden;
+}
+
+.domain-result {
+    padding: 12px 20px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.domain-status {
+    padding: 4px 8px;
+    border-radius: 4px;
+    font-size: 14px;
+}
+
+.domain-status.available {
+    background: rgba(46, 204, 113, 0.2);
+    color: #2ecc71;
+}
+
+.domain-status.registered {
+    background: rgba(231, 76, 60, 0.2);
+    color: #e74c3c;
+}
