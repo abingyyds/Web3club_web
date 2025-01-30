@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Web3 Project</title>
+    <title>Web3Club 🚀 | Register .web3.club Domain - Create a DAO or Creator Community</title>
     <link rel="stylesheet" href="assets/decorations.css">
     <link rel="stylesheet" href="assets/animations.css">
     <link rel="stylesheet" href="styles.css">
@@ -37,7 +37,7 @@
         <nav>
             <div class="logo">WEB3CLUB</div>
             <div class="button-wrapper">
-                <button class="get-started-btn" onclick="window.open('https://web3.club/explore', '_blank')">Get Started</button>
+                <button class="get-started-btn">Get Started</button>
             </div>
         </nav>
     </header>
@@ -50,7 +50,7 @@
                 <h2 class="glow">Web3Club</h2>
                 <p id="typing-text"></p>
                 <div class="button-wrapper">
-                    <button class="get-started-btn" onclick="window.location.href='explore.html'">Get Started</button>
+                    <button class="get-started-btn">Get Started</button>
                 </div>
             </div>
         </section>
@@ -189,7 +189,7 @@
                 <span>Shield Your Social Capital.</span>
             </h2>
             <div class="button-wrapper">
-                <button class="get-started-btn" onclick="window.location.href='explore.html'">Get Started</button>
+                <button class="get-started-btn">Get Started</button>
             </div>
         </section>
     </main>
@@ -222,6 +222,11 @@
     </footer>
 
     <script>
+    // Add this at the beginning of your script
+    function handleGetStarted() {
+        window.open('https://web3.club/explore', '_blank');
+    }
+    
     // Initialize card cloning and click events
     function initializeCards() {
         // Clone feature cards for infinite scroll
@@ -467,6 +472,13 @@
 
     // Initialize all components
     window.addEventListener('load', () => {
+        // Add click handlers to all Get Started buttons
+        document.querySelectorAll('.get-started-btn').forEach(button => {
+            if (button.id !== 'docButton') {  // Skip the doc button as it has its own handler
+                button.addEventListener('click', handleGetStarted);
+            }
+        });
+
         initializeCards();
         initRadar();
         new ParticleNetwork(document.getElementById('particles-network'));

@@ -604,14 +604,13 @@ main {
     box-shadow: 0 0 15px var(--neon-green);
 }
 
-/* Button container style */
+/* Button base style */
 .button-wrapper {
     position: relative;
     display: inline-block;
     padding: 2px;
 }
 
-/* Button base style */
 .get-started-btn {
     background: transparent;
     color: var(--neon-green);
@@ -622,6 +621,8 @@ main {
     cursor: pointer;
     position: relative;
     transition: all 0.3s ease;
+    text-decoration: none;
+    z-index: 2;
 }
 
 /* Button border effect */
@@ -633,6 +634,8 @@ main {
     height: 12px;
     border: 2px solid var(--neon-green);
     transition: all 0.3s ease;
+    pointer-events: none;
+    z-index: 1;
 }
 
 .button-wrapper::before {
@@ -678,6 +681,21 @@ main {
     50% {
         box-shadow: 0 0 20px rgba(0, 255, 149, 0.6);
     }
+}
+
+/* Navigation specific styles */
+nav .button-wrapper {
+    margin: 0;
+}
+
+/* Hero section specific styles */
+.hero .button-wrapper {
+    margin-top: 2rem;
+}
+
+/* CTA section specific styles */
+.cta .button-wrapper {
+    margin-top: 2rem;
 }
 
 /* Features section */
