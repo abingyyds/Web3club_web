@@ -136,7 +136,7 @@ function setupTrendingClubs() {
         }
     ];
 
-    // 根据屏幕宽度决定每页显示的数量
+    // Determine items per page based on screen width
     function getItemsPerPage() {
         return window.innerWidth <= 768 ? 2 : 4;
     }
@@ -194,13 +194,13 @@ function setupTrendingClubs() {
         }
     });
 
-    // 监听窗口大小变化
+    // Listen for window resize
     window.addEventListener('resize', () => {
         const newItemsPerPage = getItemsPerPage();
         if (newItemsPerPage !== itemsPerPage) {
             itemsPerPage = newItemsPerPage;
             totalPages = updateTotalPages();
-            // 确保当前页面在新的总页数范围内
+            // Ensure current page is within new total pages range
             currentPage = Math.min(currentPage, totalPages);
             displayClubs(currentPage);
             updatePagination();
@@ -586,7 +586,7 @@ function setupMobileMenu() {
         navMenu.classList.toggle('active');
     });
 
-    // Click menu item to close menu
+    // Close menu when clicking menu items
     navItems.forEach(item => {
         item.addEventListener('click', () => {
             menuBtn.classList.remove('active');
@@ -594,7 +594,7 @@ function setupMobileMenu() {
         });
     });
 
-    // Click outside page to close menu
+    // Close menu when clicking outside
     document.addEventListener('click', (e) => {
         if (!navMenu.contains(e.target) && !menuBtn.contains(e.target)) {
             menuBtn.classList.remove('active');
@@ -629,3 +629,23 @@ function filterClubsByType(type) {
     // TODO: Implement filtering logic
     // Here you can filter and display different clubs based on type
 }
+
+// Connect wallet button click handler
+document.querySelector('.connect-wallet-btn').addEventListener('click', async () => {
+    try {
+        const connectButton = document.querySelector('.connect-wallet-btn');
+        connectButton.textContent = 'Connecting...';
+        
+        // Connect wallet
+        const { address } = await walletKit.connect();
+        
+        // Update button to show address
+        if (address) {
+            const shortAddress = `${address.slice(0, 6)}...${address.slice(-4)}`;
+            connectButton.textContent = shortAddress;
+        }
+    } catch (error) {
+        console.error('Failed to connect wallet:', error);
+        document.querySelector('.connect-wallet-btn').textContent = 'Connect Wallet';
+    }
+});

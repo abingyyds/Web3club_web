@@ -30,7 +30,7 @@ header::before {
     left: 0;
     right: 0;
     bottom: 0;
-    background: rgba(18, 18, 18, 0.95);
+    background: rgba(0, 0, 0, 0.95);
     backdrop-filter: blur(20px);
     -webkit-backdrop-filter: blur(20px);
     border-bottom: 1px solid rgba(0, 255, 149, 0.1);
@@ -137,7 +137,7 @@ body header .nav-item:hover .nav-icon {
         left: 0;
         right: 0;
         width: 100%;
-        background: rgba(18, 18, 18, 0.95);
+        background: rgba(0, 0, 0, 0.95);
         backdrop-filter: blur(20px);
         -webkit-backdrop-filter: blur(20px);
     }
@@ -162,7 +162,7 @@ body header .nav-item:hover .nav-icon {
     }
 
     body header .nav-menu {
-        background: rgba(18, 18, 18, 0.95);
+        background: rgba(0, 0, 0, 0.95);
         backdrop-filter: blur(20px);
         -webkit-backdrop-filter: blur(20px);
         position: fixed;
@@ -287,7 +287,7 @@ body header .nav-item:hover .nav-icon {
         left: 0;
         right: 0;
         width: 100%;
-        background: rgba(18, 18, 18, 0.95);
+        background: rgba(0, 0, 0, 0.95);
         backdrop-filter: blur(20px);
         -webkit-backdrop-filter: blur(20px);
     }
