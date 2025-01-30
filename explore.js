@@ -35,32 +35,109 @@ const communityData = [
     }
 ];
 
+// Trending Clubs Data
+const mockTrendingData = [
+    {
+        name: 'Azuki',
+        icon: '🎨',
+        description: 'A top NFT community with unique art style',
+        members: 15000,
+        growth: '+25%'
+    },
+    {
+        name: 'Bored Ape',
+        icon: '🐵',
+        description: 'The most influential NFT community',
+        members: 20000,
+        growth: '+15%'
+    },
+    {
+        name: 'CryptoPunks',
+        icon: '👾',
+        description: 'Pioneer of NFT digital art collection',
+        members: 18000,
+        growth: '+10%'
+    },
+    {
+        name: 'Doodles',
+        icon: '🎨',
+        description: 'Creative and artistic NFT community',
+        members: 12000,
+        growth: '+30%'
+    }
+];
+
 // Initialize page
 document.addEventListener('DOMContentLoaded', () => {
     setupSearch();
-    setupTrendingClubs();
     setupMobileMenu();
     setupToggleButtons();
+    initializeTrendingItems();
 });
 
+// Setup search functionality
 function setupSearch() {
     const searchInput = document.querySelector('.search-explore');
     const searchResults = document.querySelector('.search-results');
     const trendingClubs = document.querySelector('.trending-clubs');
+    
+    // Mock clubs data
+    const mockClubs = [
+        {
+            name: 'Azuki Official',
+            type: 'Creator Hub',
+            domain: 'azuki.web3.club',
+            description: 'Official Azuki Community',
+            members: '12K',
+            growth: '+25%',
+            icon: '🎨'
+        },
+        {
+            name: 'Azuki Artists',
+            type: 'Creator Hub',
+            domain: 'artists.azuki.web3.club',
+            description: 'Azuki Artists Community',
+            members: '5K',
+            growth: '+15%',
+            icon: '🎨'
+        },
+        {
+            name: 'Azuki DAO',
+            type: 'DAO',
+            domain: 'dao.azuki.web3.club',
+            description: 'Azuki Governance DAO',
+            members: '8K',
+            growth: '+20%',
+            icon: '⚡'
+        }
+    ];
+
+    let currentFilter = 'all';
 
     searchInput.addEventListener('input', async function() {
-        const query = this.value.trim();
+        const query = this.value.trim().toLowerCase();
+        
         if (query.length > 0) {
+            // 1. Check domain availability
             const domainName = `${query}.web3.club`;
             const status = await checkDomainStatus(domainName);
-            searchResults.innerHTML = `
-                <div class="domain-result">
-                    <span class="domain-name">${domainName}</span>
-                    <span class="domain-status ${status ? 'registered' : 'available'}">
-                        ${status ? 'Registered' : 'Available'}
-                    </span>
-                </div>
-            `;
+            
+            // 2. Search for matching clubs
+            const filteredClubs = mockClubs.filter(club => {
+                const matchesSearch = 
+                    club.name.toLowerCase().includes(query) ||
+                    club.domain.toLowerCase().includes(query) ||
+                    club.description.toLowerCase().includes(query);
+                
+                const matchesType = 
+                    currentFilter === 'all' || 
+                    club.type === currentFilter;
+                
+                return matchesSearch && matchesType;
+            });
+
+            // Display combined results
+            displaySearchResults(domainName, status, filteredClubs);
             searchResults.style.display = 'block';
             trendingClubs.style.display = 'none';
         } else {
@@ -68,159 +145,170 @@ function setupSearch() {
             trendingClubs.style.display = 'block';
         }
     });
+
+    function displaySearchResults(domainName, status, clubs) {
+        let resultsHTML = `
+            <div class="domain-check-result">
+                <span class="domain-name">${domainName}</span>
+                <span class="domain-status ${status ? 'registered' : 'available'}">
+                    ${status ? 'Registered' : 'Available'}
+                </span>
+            </div>
+        `;
+
+        if (clubs.length > 0) {
+            resultsHTML += `
+                <div class="related-clubs-section">
+                    <div class="section-header">
+                        <h2 class="section-title">Related Clubs</h2>
+                        <div class="filter-buttons">
+                            <button class="filter-btn ${currentFilter === 'all' ? 'active' : ''}" 
+                                    onclick="filterClubsByType('all')">All</button>
+                            <button class="filter-btn ${currentFilter === 'Creator Hub' ? 'active' : ''}" 
+                                    onclick="filterClubsByType('Creator Hub')">Creator Hub</button>
+                            <button class="filter-btn ${currentFilter === 'DAO' ? 'active' : ''}" 
+                                    onclick="filterClubsByType('DAO')">DAO</button>
+                        </div>
+                    </div>
+                    <div class="related-clubs-list">
+                        ${clubs.map(club => `
+                            <div class="related-club-item">
+                                <div class="related-club-header">
+                                    <div class="related-club-icon">${club.icon}</div>
+                                    <div class="related-club-name">${club.name}</div>
+                                </div>
+                                <div class="related-club-desc">${club.description}</div>
+                                <div class="related-club-stats">
+                                    <span>👥 ${club.members} members</span>
+                                    <span>📈 ${club.growth} growth</span>
+                                </div>
+                            </div>
+                        `).join('')}
+                    </div>
+                </div>
+            `;
+        } else {
+            resultsHTML += `
+                <div class="no-clubs-found">
+                    <p>No related clubs found</p>
+                </div>
+            `;
+        }
+
+        searchResults.innerHTML = resultsHTML;
+    }
+
+    // Mock domain status check
+    async function checkDomainStatus(domain) {
+        await new Promise(resolve => setTimeout(resolve, 300));
+        return Math.random() > 0.5;
+    }
+
+    // Update filter type
+    window.filterClubsByType = function(type) {
+        currentFilter = type;
+        const query = searchInput.value.trim().toLowerCase();
+        if (query.length > 0) {
+            const filteredClubs = mockClubs.filter(club => {
+                const matchesSearch = 
+                    club.name.toLowerCase().includes(query) ||
+                    club.domain.toLowerCase().includes(query) ||
+                    club.description.toLowerCase().includes(query);
+                
+                const matchesType = 
+                    type === 'all' || 
+                    club.type === type;
+                
+                return matchesSearch && matchesType;
+            });
+            displaySearchResults(`${query}.web3.club`, Math.random() > 0.5, filteredClubs);
+        }
+    };
 }
 
-function setupTrendingClubs() {
-    const trendingList = document.querySelector('.trending-list');
-    const prevBtn = document.querySelector('.prev-btn');
-    const nextBtn = document.querySelector('.next-btn');
-    const currentPageSpan = document.querySelector('.current-page');
-    const totalPagesSpan = document.querySelector('.total-pages');
+// Setup mobile menu
+function setupMobileMenu() {
+    const menuBtn = document.querySelector('.mobile-menu-btn');
+    const navMenu = document.querySelector('.nav-menu');
 
-    const trendingClubs = [
+    if (menuBtn && navMenu) {
+        menuBtn.addEventListener('click', () => {
+            menuBtn.classList.toggle('active');
+            navMenu.classList.toggle('active');
+        });
+    }
+}
+
+// Setup toggle buttons
+function setupToggleButtons() {
+    const toggleBtns = document.querySelectorAll('.toggle-btn');
+    toggleBtns.forEach(btn => {
+        btn.addEventListener('click', () => {
+            toggleBtns.forEach(b => b.classList.remove('active'));
+            btn.classList.add('active');
+            filterClubsByType(btn.dataset.type);
+        });
+    });
+}
+
+// Initialize trending items
+function initializeTrendingItems() {
+    const trendingList = document.querySelector('.trending-list');
+    const mockItems = [
         {
-            name: 'BAYC',
+            name: 'Azuki',
+            type: 'Creator Hub',
+            icon: '🎨',
+            description: 'A top NFT community with unique art style',
+            members: '15.2K',
+            growth: '+25%'
+        },
+        {
+            name: 'Bored Ape',
+            type: 'Creator Hub',
             icon: '🐵',
-            description: 'The Bored Ape Yacht Club is a collection of 10,000 unique NFTs.',
-            members: '6.5K',
-            volume: '150 ETH'
+            description: 'The most influential NFT community',
+            members: '20K',
+            growth: '+15%'
         },
         {
             name: 'CryptoPunks',
+            type: 'DAO',
             icon: '👾',
-            description: 'CryptoPunks launched as a fixed set of 10,000 items in mid-2017.',
-            members: '5.2K',
-            volume: '120 ETH'
+            description: 'Pioneer of NFT digital art collection',
+            members: '18K',
+            growth: '+10%'
         },
         {
             name: 'Doodles',
+            type: 'Creator Hub',
             icon: '🎨',
-            description: 'A community-driven collectibles project featuring art by Burnt Toast.',
-            members: '4.8K',
-            volume: '80 ETH'
-        },
-        {
-            name: 'Azuki',
-            icon: '⛩️',
-            description: 'A brand for the metaverse. Built by the community.',
-            members: '4.2K',
-            volume: '95 ETH'
-        },
-        {
-            name: 'CloneX',
-            icon: '🤖',
-            description: 'RTFKT x Takashi Murakami Clone X NFT Collection.',
-            members: '3.8K',
-            volume: '85 ETH'
-        },
-        {
-            name: 'Moonbirds',
-            icon: '🦉',
-            description: 'A collection of 10,000 utility-enabled PFPs.',
-            members: '3.5K',
-            volume: '75 ETH'
-        },
-        {
-            name: 'World of Women',
-            icon: '👩',
-            description: 'Empowering women through Web3 and NFTs.',
-            members: '3.2K',
-            volume: '65 ETH'
-        },
-        {
-            name: 'VeeFriends',
-            icon: '🦁',
-            description: 'Gary Vaynerchuk\'s NFT collection representing intellectual property.',
-            members: '3.0K',
-            volume: '60 ETH'
+            description: 'Creative and artistic NFT community',
+            members: '12K',
+            growth: '+30%'
         }
     ];
 
-    // Determine items per page based on screen width
-    function getItemsPerPage() {
-        return window.innerWidth <= 768 ? 2 : 4;
-    }
-
-    let itemsPerPage = getItemsPerPage();
-    let currentPage = 1;
-
-    function updateTotalPages() {
-        const totalPages = Math.ceil(trendingClubs.length / itemsPerPage);
-        totalPagesSpan.textContent = totalPages;
-        return totalPages;
-    }
-
-    let totalPages = updateTotalPages();
-
-    function updatePagination() {
-        currentPageSpan.textContent = currentPage;
-        prevBtn.disabled = currentPage === 1;
-        nextBtn.disabled = currentPage === totalPages;
-    }
-
-    function displayClubs(page) {
-        const start = (page - 1) * itemsPerPage;
-        const end = start + itemsPerPage;
-        const pageClubs = trendingClubs.slice(start, end);
-
-        trendingList.innerHTML = pageClubs.map(club => `
-            <div class="trending-item">
-                <div class="trending-item-header">
-                    <div class="trending-item-icon">${club.icon}</div>
-                    <div class="trending-item-name">${club.name}</div>
-                </div>
-                <div class="trending-item-desc">${club.description}</div>
-                <div class="trending-item-stats">
-                    <span>👥 ${club.members} members</span>
-                    <span>💎 ${club.volume} volume</span>
-                </div>
+    trendingList.innerHTML = mockItems.map(item => `
+        <div class="trending-item">
+            <div class="trending-item-header">
+                <div class="trending-item-icon">${item.icon}</div>
+                <div class="trending-item-name">${item.name}</div>
             </div>
-        `).join('');
-    }
-
-    prevBtn.addEventListener('click', () => {
-        if (currentPage > 1) {
-            currentPage--;
-            displayClubs(currentPage);
-            updatePagination();
-        }
-    });
-
-    nextBtn.addEventListener('click', () => {
-        if (currentPage < totalPages) {
-            currentPage++;
-            displayClubs(currentPage);
-            updatePagination();
-        }
-    });
-
-    // Listen for window resize
-    window.addEventListener('resize', () => {
-        const newItemsPerPage = getItemsPerPage();
-        if (newItemsPerPage !== itemsPerPage) {
-            itemsPerPage = newItemsPerPage;
-            totalPages = updateTotalPages();
-            // Ensure current page is within new total pages range
-            currentPage = Math.min(currentPage, totalPages);
-            displayClubs(currentPage);
-            updatePagination();
-        }
-    });
-
-    // Initial display
-    displayClubs(currentPage);
-    updatePagination();
+            <div class="trending-item-desc">${item.description}</div>
+            <div class="trending-item-stats">
+                <span>👥 ${item.members} members</span>
+                <span>📈 ${item.growth} growth</span>
+            </div>
+        </div>
+    `).join('');
 }
 
-async function checkDomainStatus(domain) {
-    try {
-        const response = await fetch(`/api/check-domain?domain=${domain}`);
-        const data = await response.json();
-        return data.isRegistered;
-    } catch (error) {
-        console.error('Error checking domain status:', error);
-        return false;
-    }
+// Filter clubs by type
+function filterClubsByType(type) {
+    console.log('Filtering clubs by type:', type);
+    // TODO: Implement filtering logic
+    // Here you can filter and display different clubs based on type
 }
 
 // Populate community grid
@@ -575,77 +663,3 @@ function setupNavigation() {
         });
     });
 }
-
-function setupMobileMenu() {
-    const menuBtn = document.querySelector('.mobile-menu-btn');
-    const navMenu = document.querySelector('.nav-menu');
-    const navItems = document.querySelectorAll('.nav-item');
-
-    menuBtn.addEventListener('click', () => {
-        menuBtn.classList.toggle('active');
-        navMenu.classList.toggle('active');
-    });
-
-    // Close menu when clicking menu items
-    navItems.forEach(item => {
-        item.addEventListener('click', () => {
-            menuBtn.classList.remove('active');
-            navMenu.classList.remove('active');
-        });
-    });
-
-    // Close menu when clicking outside
-    document.addEventListener('click', (e) => {
-        if (!navMenu.contains(e.target) && !menuBtn.contains(e.target)) {
-            menuBtn.classList.remove('active');
-            navMenu.classList.remove('active');
-        }
-    });
-}
-
-// Toggle button logic
-document.addEventListener('DOMContentLoaded', function() {
-    const toggleBtns = document.querySelectorAll('.toggle-btn');
-    
-    toggleBtns.forEach(btn => {
-        btn.addEventListener('click', function() {
-            // Remove active class from all buttons
-            toggleBtns.forEach(b => b.classList.remove('active'));
-            // Add active class to clicked button
-            this.classList.add('active');
-            
-            // Get current selected type
-            const selectedType = this.getAttribute('data-type');
-            
-            // Here you can add logic to filter content based on type
-            filterClubsByType(selectedType);
-        });
-    });
-});
-
-// Function to filter clubs by type
-function filterClubsByType(type) {
-    console.log('Filtering clubs by type:', type);
-    // TODO: Implement filtering logic
-    // Here you can filter and display different clubs based on type
-}
-
-// Connect wallet button click handler
-document.querySelector('.connect-wallet-btn').addEventListener('click', async () => {
-    try {
-        const connectButton = document.querySelector('.connect-wallet-btn');
-        connectButton.textContent = 'Connecting...';
-        
-        // Connect wallet
-        const { address } = await walletKit.connect();
-        
-        // Update button to show address
-        if (address) {
-            const shortAddress = `${address.slice(0, 6)}...${address.slice(-4)}`;
-            connectButton.textContent = shortAddress;
-        }
-    } catch (error) {
-        console.error('Failed to connect wallet:', error);
-        document.querySelector('.connect-wallet-btn').textContent = 'Connect Wallet';
-    }
-});
