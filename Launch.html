@@ -8,6 +8,7 @@
     <link rel="stylesheet" href="assets/animations.css">
     <link rel="stylesheet" href="styles.css">
     <link rel="stylesheet" href="explore.css">
+    <link rel="stylesheet" href="launch.css">
     <link href="https://fonts.googleapis.com/css2?family=Space+Mono:wght@400;700&display=swap" rel="stylesheet">
 </head>
 <body>
@@ -64,43 +65,128 @@
         </nav>
     </header>
 
-    <main class="explore-main">
-        <section class="explore-content">
-            <div class="content-header">
-                <h1>Discover Quality Communities</h1>
-                <div class="search-module">
-                    <input type="text" class="search-explore" placeholder="Search Web3.Club Domain...">
-                    <div class="search-results"></div>
-                    <div class="trending-clubs">
-                        <div class="trending-header">
-                            <div class="trending-title">
-                                <span>🔥 Trending Clubs</span>
-                            </div>
-                            <div class="filter-toggle">
-                                <button class="toggle-btn active" data-type="creator">Creator Hub</button>
-                                <button class="toggle-btn" data-type="dao">DAO</button>
-                            </div>
-                        </div>
-                        <div class="trending-list">
-                            <!-- Trending items will be populated by JS -->
-                        </div>
-                        <div class="trending-pagination">
-                            <button class="pagination-btn prev-btn" disabled>
-                                <span>←</span>
-                            </button>
-                            <div class="pagination-info">
-                                <span class="current-page">1</span>
-                                <span>/</span>
-                                <span class="total-pages">1</span>
-                            </div>
-                            <button class="pagination-btn next-btn">
-                                <span>→</span>
-                            </button>
-                        </div>
-                    </div>
+    <main>
+        <section class="content-header">
+            <h1>Launch Your Club</h1>
+            <p class="subtitle">Register your exclusive Web3 community domain</p>
+        </section>
+
+        <section class="search-panel">
+            <div class="search-container">
+                <div class="search-box">
+                    <input type="text" id="domainSearch" class="search-input" placeholder="Enter domain name (min. 3 characters)">
+                    <span class="domain-suffix">.web3.club</span>
+                </div>
+                <div class="search-status"></div>
+            </div>
+            <div class="search-tips">
+                <div class="tip-item">
+                    <span class="tip-icon">ℹ️</span>
+                    <span class="tip-text">Domain name must be at least 3 characters</span>
+                </div>
+                <div class="tip-item">
+                    <span class="tip-icon">💡</span>
+                    <span class="tip-text">Only letters, numbers, and hyphens allowed</span>
                 </div>
             </div>
         </section>
+
+        <section class="config-panel" style="display: none;">
+            <div class="panel-header">
+                <h2>Configure Your Club</h2>
+                <div class="selected-domain"></div>
+            </div>
+
+            <div class="config-options">
+                <div class="duration-section">
+                    <h3>Registration Duration</h3>
+                    <div class="duration-options">
+                        <label class="option-card">
+                            <input type="radio" name="duration" value="1" checked>
+                            <div class="card-content">
+                                <div class="duration">1 Year</div>
+                                <div class="price">0.1 ETH</div>
+                            </div>
+                        </label>
+                        <label class="option-card">
+                            <input type="radio" name="duration" value="3">
+                            <div class="card-content">
+                                <div class="duration">3 Years</div>
+                                <div class="price">0.25 ETH</div>
+                            </div>
+                        </label>
+                        <label class="option-card">
+                            <input type="radio" name="duration" value="5">
+                            <div class="card-content">
+                                <div class="duration">5 Years</div>
+                                <div class="price">0.4 ETH</div>
+                            </div>
+                        </label>
+                    </div>
+                </div>
+
+                <div class="type-section">
+                    <h3>Club Type</h3>
+                    <div class="type-options">
+                        <label class="option-card">
+                            <input type="radio" name="type" value="creator" checked>
+                            <div class="card-content">
+                                <div class="type-header">
+                                    <span class="type-icon">🎨</span>
+                                    <span class="type-name">Creator Hub</span>
+                                </div>
+                                <div class="type-desc">Fan Token System + Content NFT Minting</div>
+                            </div>
+                        </label>
+                        <label class="option-card">
+                            <input type="radio" name="type" value="dao">
+                            <div class="card-content">
+                                <div class="type-header">
+                                    <span class="type-icon">⚡</span>
+                                    <span class="type-name">DAO Vault</span>
+                                </div>
+                                <div class="type-desc">Multi-sig Contract + Governance Proposal Templates</div>
+                            </div>
+                        </label>
+                    </div>
+                </div>
+
+                <div class="payment-summary">
+                    <h3>Payment Summary</h3>
+                    <div class="summary-content">
+                        <div class="summary-item">
+                            <span class="label">Domain</span>
+                            <span class="value domain-value"></span>
+                        </div>
+                        <div class="summary-item">
+                            <span class="label">Duration</span>
+                            <span class="value duration-value"></span>
+                        </div>
+                        <div class="summary-item">
+                            <span class="label">Type</span>
+                            <span class="value type-value"></span>
+                        </div>
+                        <div class="summary-item total">
+                            <span class="label">Total</span>
+                            <div class="total-value">
+                                <span class="eth-amount"></span>
+                                <span class="usd-amount"></span>
+                            </div>
+                        </div>
+                    </div>
+                    <button class="register-btn" disabled>Connect Wallet to Continue</button>
+                </div>
+            </div>
+        </section>
+
+        <div class="transaction-modal" style="display: none;">
+            <div class="modal-content">
+                <div class="status-icon">⏳</div>
+                <h3 class="status-title">Processing</h3>
+                <p class="status-desc">Please confirm the transaction in your wallet...</p>
+                <div class="transaction-hash"></div>
+            </div>
+        </div>
     </main>
 
     <footer>
@@ -130,6 +216,6 @@
         <p>©Copyright 2025</p>
     </footer>
 
-    <script src="explore.js"></script>
+    <script src="launch.js"></script>
 </body>
 </html> 

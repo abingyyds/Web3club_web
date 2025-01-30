@@ -69,11 +69,266 @@ const mockTrendingData = [
 
 // Initialize page
 document.addEventListener('DOMContentLoaded', () => {
-    setupSearch();
+    // Get DOM elements
+    const searchInput = document.getElementById('domainSearch');
+    const searchStatus = document.querySelector('.search-status');
+    const configPanel = document.querySelector('.config-panel');
+    const selectedDomain = document.querySelector('.selected-domain');
+    const connectWalletBtn = document.querySelector('.connect-wallet-btn');
+    const durationInputs = document.querySelectorAll('input[name="duration"]');
+    const typeInputs = document.querySelectorAll('input[name="type"]');
+    const registerBtn = document.querySelector('.register-btn');
+    const transactionModal = document.querySelector('.transaction-modal');
+    
+    let searchTimeout;
+    let currentDomain = '';
+    let walletConnected = false;
+    
+    // Check URL parameters for domain
+    const urlParams = new URLSearchParams(window.location.search);
+    const domainFromURL = urlParams.get('domain');
+    
+    if (domainFromURL) {
+        searchInput.value = domainFromURL;
+        // Trigger domain check
+        checkDomain(domainFromURL);
+    }
+
+    // ETH price config
+    const ETH_PRICE = 1800;
+    const PRICES = {
+        1: 0.1,
+        3: 0.25,
+        5: 0.4
+    };
+
+    // Domain search handling
+    searchInput.addEventListener('input', (e) => {
+        const query = e.target.value.trim().toLowerCase();
+        
+        clearTimeout(searchTimeout);
+        
+        // Reset UI
+        configPanel.style.display = 'none';
+        searchStatus.style.display = 'none';
+        
+        // Validate input
+        if (!isValidDomainName(query)) {
+            if (query.length > 0) {
+                showError('Domain can only contain letters, numbers, and hyphens');
+            }
+            return;
+        }
+        
+        if (query.length < 3) {
+            if (query.length > 0) {
+                showError('Domain name must be at least 3 characters');
+            }
+            return;
+        }
+        
+        // Show loading status
+        showLoading();
+        
+        // Debounce search
+        searchTimeout = setTimeout(() => checkDomain(query), 500);
+    });
+
+    // Show error message
+    function showError(message) {
+        searchStatus.innerHTML = `
+            <div class="error-message">
+                <span>❌ ${message}</span>
+            </div>
+        `;
+        searchStatus.className = 'search-status error';
+        searchStatus.style.display = 'flex';
+    }
+
+    // Show loading status
+    function showLoading() {
+        searchStatus.innerHTML = `
+            <div class="loading-spinner"></div>
+            <span>Checking domain availability...</span>
+        `;
+        searchStatus.className = 'search-status loading';
+        searchStatus.style.display = 'flex';
+    }
+
+    // Validate domain format
+    function isValidDomainName(domain) {
+        return /^[a-z0-9-]*$/.test(domain);
+    }
+
+    // Domain check (mock)
+    async function checkDomain(domain) {
+        try {
+            // Mock API call
+            await new Promise(resolve => setTimeout(resolve, 800));
+            
+            // Random availability (mock)
+            const isAvailable = Math.random() > 0.3;
+            
+            if (isAvailable) {
+                searchStatus.innerHTML = `
+                    <span class="domain-name">${domain}.web3.club is available!</span>
+                    <button class="register-btn" onclick="showConfigPanel('${domain}')">Register Now</button>
+                `;
+                searchStatus.className = 'search-status available';
+                currentDomain = domain;
+            } else {
+                searchStatus.innerHTML = `
+                    <span class="domain-name">${domain}.web3.club is already registered</span>
+                `;
+                searchStatus.className = 'search-status taken';
+            }
+            
+        } catch (error) {
+            console.error('Domain check error:', error);
+            showError('Error checking domain, please try again');
+        }
+    }
+
+    // Show configuration panel
+    window.showConfigPanel = function(domain) {
+        configPanel.style.display = 'block';
+        configPanel.style.opacity = '0';
+        configPanel.style.transform = 'translateY(-20px)';
+        
+        selectedDomain.textContent = `${domain}.web3.club`;
+        currentDomain = domain;
+        
+        // Trigger animation
+        setTimeout(() => {
+            configPanel.style.opacity = '1';
+            configPanel.style.transform = 'translateY(0)';
+        }, 50);
+        
+        // Smooth scroll to config section
+        configPanel.scrollIntoView({ behavior: 'smooth', block: 'start' });
+        
+        updateSummary();
+    }
+
+    // Update payment summary
+    function updateSummary() {
+        const duration = document.querySelector('input[name="duration"]:checked').value;
+        const type = document.querySelector('input[name="type"]:checked').value;
+        
+        const ethPrice = PRICES[duration];
+        const usdPrice = ethPrice * ETH_PRICE;
+        
+        document.querySelector('.domain-value').textContent = `${currentDomain}.web3.club`;
+        document.querySelector('.duration-value').textContent = `${duration} Year${duration > 1 ? 's' : ''}`;
+        document.querySelector('.type-value').textContent = type === 'creator' ? 'Creator Hub' : 'DAO Vault';
+        document.querySelector('.eth-amount').textContent = `${ethPrice} ETH`;
+        document.querySelector('.usd-amount').textContent = `($${usdPrice.toFixed(2)} USD)`;
+        
+        updateRegisterButton();
+    }
+
+    // Update register button status
+    function updateRegisterButton() {
+        if (!registerBtn) return;
+        registerBtn.disabled = !walletConnected;
+        registerBtn.textContent = walletConnected ? 'Register Domain' : 'Connect Wallet to Continue';
+    }
+
+    // Wallet connection handling
+    connectWalletBtn.addEventListener('click', async () => {
+        try {
+            connectWalletBtn.textContent = 'Connecting...';
+            // Mock wallet connection delay
+            await new Promise(resolve => setTimeout(resolve, 1000));
+            
+            walletConnected = true;
+            const mockAddress = '0x' + Array(40).fill(0).map(() => 
+                Math.floor(Math.random() * 16).toString(16)).join('');
+            connectWalletBtn.textContent = `${mockAddress.slice(0, 6)}...${mockAddress.slice(-4)}`;
+            
+            updateRegisterButton();
+        } catch (error) {
+            console.error('Wallet connection failed:', error);
+            connectWalletBtn.textContent = 'Connect Wallet';
+            walletConnected = false;
+        }
+    });
+
+    // Handle registration process
+    registerBtn.addEventListener('click', async () => {
+        if (!walletConnected) {
+            alert('Please connect your wallet first');
+            return;
+        }
+
+        try {
+            // Show transaction status
+            transactionModal.style.display = 'flex';
+            
+            // Mock transaction process
+            await new Promise(resolve => setTimeout(resolve, 2000));
+            
+            // Mock transaction hash
+            const txHash = '0x' + Array(64).fill(0).map(() => 
+                Math.floor(Math.random() * 16).toString(16)).join('');
+            
+            // Update status
+            const modalContent = transactionModal.querySelector('.modal-content');
+            modalContent.innerHTML = `
+                <div class="status-icon">✅</div>
+                <h3 class="status-title">Registration Successful!</h3>
+                <p class="status-desc">Your domain has been successfully registered.</p>
+                <div class="transaction-hash">
+                    <a href="https://etherscan.io/tx/${txHash}" target="_blank">
+                        View on Etherscan
+                    </a>
+                </div>
+            `;
+            
+            // Close status display after 5 seconds
+            setTimeout(() => {
+                transactionModal.style.display = 'none';
+                searchInput.value = '';
+                configPanel.style.display = 'none';
+                searchStatus.style.display = 'none';
+                currentDomain = '';
+            }, 5000);
+            
+        } catch (error) {
+            console.error('Registration error:', error);
+            transactionModal.querySelector('.modal-content').innerHTML = `
+                <div class="status-icon">❌</div>
+                <h3 class="status-title">Registration Failed</h3>
+                <p class="status-desc">Please try again later.</p>
+            `;
+        }
+    });
+
+    // Configuration option change handling
+    durationInputs.forEach(input => {
+        input.addEventListener('change', updateSummary);
+    });
+
+    typeInputs.forEach(input => {
+        input.addEventListener('change', updateSummary);
+    });
+
+    // Initialize mobile menu
     setupMobileMenu();
-    setupToggleButtons();
-    initializeTrendingItems();
 });
+
+// Setup mobile menu
+function setupMobileMenu() {
+    const menuBtn = document.querySelector('.mobile-menu-btn');
+    const navMenu = document.querySelector('.nav-menu');
+
+    if (menuBtn && navMenu) {
+        menuBtn.addEventListener('click', () => {
+            menuBtn.classList.toggle('active');
+            navMenu.classList.toggle('active');
+        });
+    }
+}
 
 // Setup search functionality
 function setupSearch() {
@@ -148,7 +403,7 @@ function setupSearch() {
 
     function displaySearchResults(domainName, status, clubs) {
         let resultsHTML = `
-            <div class="domain-check-result ${status ? 'registered' : 'available'}" ${!status ? `onclick="redirectToLaunch('${domainName.replace('.web3.club', '')}')"` : ''}>
+            <div class="domain-check-result">
                 <span class="domain-name">${domainName}</span>
                 <span class="domain-status ${status ? 'registered' : 'available'}">
                     ${status ? 'Registered' : 'Available'}
@@ -224,24 +479,6 @@ function setupSearch() {
             displaySearchResults(`${query}.web3.club`, Math.random() > 0.5, filteredClubs);
         }
     };
-
-    // Add redirect function
-    window.redirectToLaunch = function(domain) {
-        window.location.href = `launch.html?domain=${encodeURIComponent(domain)}`;
-    };
-}
-
-// Setup mobile menu
-function setupMobileMenu() {
-    const menuBtn = document.querySelector('.mobile-menu-btn');
-    const navMenu = document.querySelector('.nav-menu');
-
-    if (menuBtn && navMenu) {
-        menuBtn.addEventListener('click', () => {
-            menuBtn.classList.toggle('active');
-            navMenu.classList.toggle('active');
-        });
-    }
 }
 
 // Setup toggle buttons
